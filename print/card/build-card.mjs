@@ -96,12 +96,12 @@ body { font-family: 'IBM Plex Sans', sans-serif; }
 .front .id { position: absolute; left: 0.27in; top: 0.24in; width: 2.1in; }
 .front h1 { font: 500 15.5pt/1 'IBM Plex Sans Condensed', sans-serif; letter-spacing: -0.1pt; }
 .front .title { margin-top: 3pt; font-size: 6.4pt; line-height: 1.32; color: #4a5878; }
-.front .rule { width: 0.55in; height: 1.4pt; background: #0a6e9e; margin: 5pt 0 5pt; }
-.front ul { list-style: none; display: grid; gap: 2.3pt; }
+.front .rule { width: 0.55in; height: 1.4pt; background: #0a6e9e; margin: 4pt 0 4pt; }
+.front ul { list-style: none; display: grid; gap: 1.8pt; }
 .front li { display: flex; align-items: center; gap: 4pt; font-size: 6pt; color: #24345c; white-space: nowrap; }
 .front li .i { width: 7.5pt; height: 7.5pt; flex: none; }
 .front .bottom { position: absolute; left: 0.27in; bottom: 0.25in; display: flex; align-items: center; gap: 6pt; }
-.front .qr { width: 0.56in; height: 0.56in; }
+.front .qr { width: 0.54in; height: 0.54in; }
 .front .bar { width: 0.6pt; align-self: stretch; background: #c9d1e3; }
 .front .aff { display: grid; gap: 3pt; }
 .front .aff b { display: block; font: 500 5.3pt/1.15 'IBM Plex Sans', sans-serif; color: #0e1730; }
@@ -119,9 +119,9 @@ body { font-family: 'IBM Plex Sans', sans-serif; }
 .back li .i { width: 8pt; height: 8pt; flex: none; }
 .back .tag { position: absolute; left: 0.27in; bottom: 0.24in; font: 400 4.6pt/1.35 'IBM Plex Mono', monospace; letter-spacing: 0.9pt; text-transform: uppercase; color: #8fa0c2; }
 .back .tag b { font-weight: 400; color: #5cc8f2; }
-.back .qrbox { position: absolute; right: 0.27in; top: 0.25in; width: 0.68in; height: 0.68in; padding: 0.05in; background: #fff; border-radius: 2pt; }
+.back .qrbox { position: absolute; right: 0.27in; top: 0.25in; width: 0.74in; height: 0.74in; padding: 0.085in; background: #fff; border-radius: 2pt; }
 .back .qrbox svg, .front .qr svg { width: 100%; height: 100%; display: block; }
-.back .scan { position: absolute; right: 0.27in; top: 0.96in; width: 0.68in; text-align: center; font: 400 4.2pt/1.2 'IBM Plex Mono', monospace; color: #e4eaf6; letter-spacing: .4pt; }
+.back .scan { position: absolute; right: 0.27in; top: 1.02in; width: 0.74in; text-align: center; font: 400 4.2pt/1.2 'IBM Plex Mono', monospace; color: #e4eaf6; letter-spacing: .4pt; }
 `;
 
 const front = `
