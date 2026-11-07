@@ -1,0 +1,64 @@
+---
+import { getEntry } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import LinkList from '../components/LinkList.astro';
+import { contactForm } from '../data/site';
+
+const email = await getEntry('links', 'email');
+const address = email?.data.href.replace(/^mailto:/, '') ?? '';
+const emailPh = email?.data.source === 'placeholder';
+const formId = contactForm.value;
+---
+<Base title="Contact" description="How to reach me about research positions, internships, and collaborations." mode="docked">
+  <article class="prose">
+    <p class="eyebrow">Contact</p>
+    <h1 style="font-size:38px;margin:0 0 8px">Contact</h1>
+    <p>I'd like to hear about research positions, internships, and questions about anything on this site.</p>
+
+    <p class="email">
+      <a href={`mailto:${address}`} class:list={['mono', { ph: emailPh }]}>{address}</a>
+      {emailPh && <span class="ph-badge">to confirm</span>}
+      <button type="button" class="btn" data-copy={address}><Icon name="copy" /><span>Copy</span></button>
+      <span class="muted" role="status" data-copy-status></span>
+    </p>
+
+    {formId ? (
+      <form class="form" action={`https://formspree.io/f/${formId}`} method="POST">
+        <label>Name<input name="name" autocomplete="name" required /></label>
+        <label>Email<input name="email" type="email" autocomplete="email" required /></label>
+        <label>Message<textarea name="message" rows="6" required></textarea></label>
+        <label class="hp" aria-hidden="true">Leave this empty<input name="_gotcha" tabindex="-1" autocomplete="off" /></label>
+        <button class="btn btn--primary" type="submit">Send message</button>
+        <p class="muted" style="font-size:14px">Sent through Formspree. I only use your details to reply.</p>
+      </form>
+    ) : (
+      <p class="muted" style="font-size:15px">Email is the best way to reach me.</p>
+    )}
+
+    <h2>Elsewhere</h2>
+    <LinkList />
+  </article>
+</Base>
+<style>
+  .email { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; font-size: 18px; }
+  .form { display: grid; gap: 14px; max-width: 520px; margin-top: 20px; }
+  .form label { display: grid; gap: 4px; font-size: 15px; }
+  .form input, .form textarea { font: inherit; color: var(--text); background: var(--panel); border: 1px solid var(--hairline); border-radius: 4px; padding: 8px 10px; }
+  .hp { position: absolute; left: -9999px; }
+</style>
+<script>
+  document.addEventListener('astro:page-load', () => {
+    const btn = document.querySelector<HTMLButtonElement>('[data-copy]');
+    const status = document.querySelector<HTMLElement>('[data-copy-status]');
+    if (!btn) return;
+    btn.onclick = async () => {
+      try {
+        await navigator.clipboard.writeText(btn.dataset.copy ?? '');
+        if (status) status.textContent = 'Copied';
+      } catch {
+        if (status) status.textContent = 'Copy failed. Select the address instead.';
+      }
+    };
+  });
+</script>

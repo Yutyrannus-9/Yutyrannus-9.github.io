@@ -1,0 +1,104 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import Fact from '../components/Fact.astro';
+import Todo from '../components/Todo.astro';
+import Headshot from '../components/Headshot.astro';
+import Icon from '../components/Icon.astro';
+import type { IconName } from '../lib/icons';
+import AtlasPanel from '../components/AtlasPanel';
+import { profile, shown } from '../data/site';
+import meta from '../data/brain/meta.json';
+
+const interests = await getCollection('interests', (e) => shown(e.data));
+
+// From the résumé (Technical Skills; Professional Development & Affiliations).
+const skills: [string, string, IconName][] = [
+  ['Programming and data', 'Python (NumPy, pandas, scikit-learn), MATLAB, Excel, Google Colab', 'code'],
+  ['Neuroimaging and signals', 'Structural MRI volumetrics, FreeSurfer, EEG, MNE-Python, MOABB, preprocessing and filtering', 'brain'],
+  ['Statistics', "ANCOVA, FDR and multiple-comparison correction, ROC/AUC, DeLong tests, effect sizes (Cohen's d, partial η²)", 'sigma'],
+  ['ML and methods', 'Classification (LDA, CSP), Riemannian geometry (pyRiemann), CNNs (EEGNet), cross-validation', 'network'],
+  ['Engineering', 'Circuit analysis, CAD (SolidWorks), COMSOL Multiphysics (FEA), Simpleware, oscilloscope and multimeter, fluids and material mechanics', 'wrench'],
+];
+const honors = [
+  'NEUROCITY Summer Scholar, University of Rochester (2026)',
+  "Dean's List, CCNY",
+  'Member, Biomedical Engineering Society (BMES)',
+  'In progress: Machine Learning Specialization (DeepLearning.AI)',
+];
+---
+<Base title="About" description="About Joel Jaramillo, a biomedical engineering undergraduate moving toward computational neuroscience and neural imaging, with an atlas of his own cortex." mode="atlas">
+  <section class="panel" aria-labelledby="h">
+    <p class="eyebrow">Atlas</p>
+    <div style="display:flex;gap:16px;align-items:center;margin:0 0 8px">
+      <Headshot size={72} />
+      <h1 id="h" style="font-size:34px;margin:0">About</h1>
+    </div>
+    <p class="muted" style="margin:0 0 12px"><Fact fact={profile.program} /></p>
+    <p style="margin:0 0 10px">
+      I'm a biomedical engineering student at The City College of New York, moving toward computational
+      neuroscience and neural imaging. My footing is engineering physics, circuits, and mechanics. I now apply it
+      to MRI-based biomarker research and machine-learning analysis of brain data as a research assistant in the
+      ZVR Lab at the University of Rochester, and to head modeling and electric-field simulation in the Bikson Lab
+      at CCNY.
+    </p>
+    <p style="margin:0">
+      I'm comfortable across theory, Python data pipelines, and statistical inference, and I want to develop
+      machine-learning and deep-learning methods for fMRI and brain-signal decoding. Outside research I train in
+      combat martial arts.
+    </p>
+    <Todo>Two sentences in your own voice: why neuroscience, and what kind of position you're looking for next.</Todo>
+  </section>
+
+  <section class="panel" aria-labelledby="interests">
+    <h2 id="interests" style="font-size:22px;margin:0 0 4px">Research interests</h2>
+    <p class="muted" style="margin:0 0 10px;font-size:15px">Areas I'm exploring, not areas of expertise.</p>
+    <ul class="interests">
+      {interests.map(({ data }) => (
+        <li class:list={{ ph: data.source === 'placeholder' }}>
+          <strong>{data.label}</strong>
+          <span class="muted">{data.why}</span>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <section class="panel" aria-labelledby="skills">
+    <h2 id="skills" style="font-size:22px;margin:0 0 10px">Skills</h2>
+    <dl class="skills">
+      {skills.map(([k, v, ic]) => (
+        <>
+          <dt><span class="skills__icon"><Icon name={ic} /></span>{k}</dt>
+          <dd>{v}</dd>
+        </>
+      ))}
+    </dl>
+    <h3 style="font-size:16px;margin:16px 0 6px;display:flex;gap:8px;align-items:center"><Icon name="award" /> Honors and affiliations</h3>
+    <ul style="margin:0;padding-left:1.1em;font-size:15px">
+      {honors.map((h) => <li>{h}</li>)}
+    </ul>
+  </section>
+
+  <section class="panel" aria-labelledby="atlas">
+    <h2 id="atlas" style="font-size:22px;margin:0 0 4px">Atlas of my cortex</h2>
+    <p class="muted" style="margin:0 0 12px;font-size:15px">
+      {meta.atlas}, {meta.regions.length / 2} regions per hemisphere, colored with the FreeSurfer lookup table.
+      Select a region on the brain or in the list. Descriptions use cautious "involved in" wording; brain regions
+      work in networks, not alone. For the deep structures, open <a href="/explore">Explore</a>.
+    </p>
+    <AtlasPanel client:visible />
+    <figure style="margin:16px 0 0">
+      <img src="/brain/atlas-lateral.svg" alt="Left and right lateral views of my cortex with Desikan–Killiany regions outlined and colored. Region names are listed above." width="800" height="320" loading="lazy" style="width:100%;height:auto" />
+      <figcaption class="muted" style="font-size:13px;margin-top:6px">Static 2D version: lateral views, generated at build time from the same surfaces.</figcaption>
+    </figure>
+  </section>
+</Base>
+<style>
+  .interests { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+  .interests li { display: grid; gap: 2px; font-size: 15px; }
+  .skills__icon { display: inline-flex; color: var(--accent); margin-right: 6px; vertical-align: -3px; }
+  .skills { display: grid; grid-template-columns: 190px 1fr; gap: 6px 14px; margin: 0; font-size: 15px; }
+  .skills dt { font: 400 12px/1.8 var(--font-mono); color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; }
+  .skills dd { margin: 0; }
+  @media (max-width: 600px) { .skills { grid-template-columns: 1fr; } .skills dd { margin-bottom: 6px; } }
+</style>

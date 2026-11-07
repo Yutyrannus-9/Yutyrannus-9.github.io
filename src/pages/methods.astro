@@ -1,0 +1,95 @@
+---
+import Base from '../layouts/Base.astro';
+import { profile, site, background, mriOn } from '../data/site';
+import meta from '../data/brain/meta.json';
+import volume from '../data/brain/volume.json';
+import deep from '../data/brain/deep.json';
+
+const totalMb = ((meta.sizes.lh.bytes + meta.sizes.rh.bytes) / 1e6).toFixed(2);
+const maxErr = Math.max(meta.sizes.lh.maxPositionErrorMm, meta.sizes.rh.maxPositionErrorMm).toFixed(3);
+const perHemi = meta.regions.length / 2;
+const volMb = ((volume.bytes.t1 + volume.bytes.labels) / 1e6).toFixed(2);
+const deepKb = Math.round(deep.bytes / 1024);
+const deepNames = [...new Set(deep.structures.map((s) => s.name))].join(', ');
+---
+<Base title="Methods" description="How the 3D brain on this site was made, what it shows and doesn't show, and the privacy choices behind it." mode="docked" backdrop="mri">
+  <article class="prose">
+    <p class="eyebrow">Methods</p>
+    <h1 style="font-size:38px;margin:0 0 12px">How the brain on this site was made</h1>
+    <p class="lede">{site.brainLabel}</p>
+
+    <h2>Acquisition</h2>
+    <ul>
+      <li>One 3D T1-weighted MRI, 1 mm isotropic, acquired on a Siemens scanner as part of a research acquisition ({profile.scanDate.value}).</li>
+      <li>This is a research scan, not a clinical one, and nothing on this site is a clinical reading of it.</li>
+    </ul>
+
+    <h2>Pipeline</h2>
+    <ol>
+      <li><strong>Reconstruction.</strong> FreeSurfer 7.4.1 <code>recon-all</code> produced the pial (outer) and white (inner) cortical surfaces, the inflated surface, sulcal depth, curvature, cortical thickness, and the Desikan–Killiany parcellation.</li>
+      <li><strong>Resampling.</strong> <code>mri_surf2surf</code> resampled each hemisphere to an icosahedral mesh of order 6: 40,962 vertices and 81,920 triangles per hemisphere. All surfaces of a hemisphere share one vertex order, so the viewer can morph between them directly.</li>
+      <li><strong>Web conversion.</strong> A build script (<code>scripts/build-brain.mjs</code>) writes one glTF file per hemisphere. The pial surface is the base mesh; the inflated and white surfaces are morph targets. Positions are quantized to 14 bits and compressed with meshopt: {totalMb} MB for both hemispheres, with a largest position error of {maxErr} mm in a sampled round-trip check.</li>
+      <li><strong>Rendering.</strong> three.js, through React Three Fiber, draws the surface with FreeSurfer-style shading from sulcal depth. Atlas colors come from the FreeSurfer lookup table ({perHemi} regions per hemisphere), desaturated by 20%.</li>
+      <li><strong>Deep structures.</strong> <code>scripts/build-deep.mjs</code> turns FreeSurfer's 1 mm subcortical labels into meshes (surface nets, Taubin smoothing, meshopt simplification): {deepNames}. {deep.structures.length} meshes, {deepKb} KB. Only shapes are shown, no volumes.</li>
+      {mriOn && (
+        <li><strong>MRI slices.</strong> <code>scripts/build-volume.mjs</code> takes the brain-only T1 (SAMSEG bias-corrected, masked to the brain plus 4 mm so the face is removed, intensities scaled to 0–255), smooths it lightly, and resamples it to {volume.voxelMm} mm voxels ({volume.dims.join(' × ')}), with FreeSurfer's labels resampled by nearest neighbour. Both files together are {volMb} MB. Slices are drawn with a navy color map that never reaches pure white. This is a downsampled display copy, not diagnostic-quality imaging.</li>
+      )}
+    </ol>
+
+    <h2>What each view shows</h2>
+    <table>
+      <thead><tr><th>Page</th><th>Operation</th><th>Data</th></tr></thead>
+      <tbody>
+        <tr><td>Home</td><td>Surface</td><td>Pial surface, shaded by sulcal depth and curvature.</td></tr>
+        <tr><td>Research</td><td>Deep</td><td>Glass cortex with the subcortical structures inside, cut by a slice of the 1.5 mm T1 that moves as you scroll. Axial, coronal, or sagittal; the half on the + side of the slice (above, in front, or right) is cut away.</td></tr>
+        <tr><td>Projects</td><td>Section</td><td>An axial clipping plane. The cut face is filled from the surfaces themselves: the cortical ribbon lies between the pial and white surfaces, and the lighter fill is everything inside the white surface. No MRI intensities are shown.</td></tr>
+        <tr><td>About</td><td>Atlas</td><td>Desikan–Killiany regions. Selecting a region shows its FreeSurfer label, a plain-language description, and its mean thickness and surface area on my scan.</td></tr>
+        <tr><td>Explore</td><td>Viewer</td><td>Folded or inflated cortex (solid, glass, or hidden), deep structures you can select, and a slice plane that samples the 1.5 mm T1 as a 3D texture. The side of the brain facing you is clipped away at the plane.</td></tr>
+      </tbody>
+    </table>
+    {mriOn && (
+      <p>
+        <strong>Backdrop switch.</strong> At the top right you can show the live 3D model, slices of my MRI, or a still image. Research and Methods open with MRI slices, which follow your scroll position; the other pages open with the 3D model. Your choice is remembered in your browser only.
+      </p>
+    )}
+    <p>The coordinate readout is FreeSurfer tkr-RAS in millimetres, taken from the pial vertex nearest the pointer, even while the surface is inflated. The scale bar is measured at the center of rotation.</p>
+
+    <h2>What this site does not show</h2>
+    <ul>
+      {mriOn ? (
+        <li>No face, no DICOM metadata, and no full-resolution imaging. MRI slices are brain-only and resampled to {volume.voxelMm} mm.</li>
+      ) : (
+        <li>No MRI slices or volumes, no face, and no DICOM metadata. Only cortical surfaces are published.</li>
+      )}
+      <li>No health information: no normative comparisons, z-scores, percentiles, brain-age estimates, screening outputs, or incidental findings.</li>
+      <li>Region descriptions are general neuroscience, not statements about my brain. Regions work in networks, and "involved in" is deliberate.</li>
+      <li>Thickness and area values are FreeSurfer's anatomical measurements, shown without comparison to anyone else.</li>
+    </ul>
+
+    <h2>Privacy choices</h2>
+    <ul>
+      <li>The scan date is shown as a year only.</li>
+      <li>Raw and full-resolution imaging data never enter the website's repository. The site ships only resampled surfaces{mriOn && ', subcortical meshes, and the 1.5 mm display volume'}.</li>
+      <li>The site uses no cookies. Your backdrop and light-mode choices are stored only in your own browser.</li>
+    </ul>
+
+    {background && (
+      <>
+        <h2>Background image</h2>
+        <p>
+          The faint background is a fluorescence micrograph of {background.subject}, by{' '}
+          <a href={background.creatorUrl}>{background.creator}</a>, used under <a href={background.licenseUrl}>{background.license}</a>
+          {background.changes && <> ({background.changes})</>}. <a href={background.sourceUrl}>Source</a>. It is someone
+          else's image, shown for atmosphere at {Math.round(background.opacity * 100)}% opacity, and it is not my data.
+        </p>
+      </>
+    )}
+
+    <h2>Performance tiers</h2>
+    <ul>
+      <li><strong>Full 3D</strong> on desktop browsers with WebGL2.</li>
+      <li><strong>Light 3D</strong> on phones, low-memory devices, and Save-Data connections: the 3D model and MRI slices load only when you ask, there's no idle rotation, and pre-rendered slices replace the live cut.</li>
+      <li><strong>No 3D</strong> without WebGL2 or when you choose the Still backdrop: a still image and a 2D atlas. MRI slices still work, because they're drawn in 2D. Every page stays fully readable.</li>
+    </ul>
+  </article>
+</Base>

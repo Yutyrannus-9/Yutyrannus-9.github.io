@@ -1,0 +1,6 @@
+---
+// Author-facing note for missing content. Any <Todo> left in content fails the
+// production build (scripts/check-placeholders.mjs).
+import { PUBLIC } from '../data/site';
+---
+{!PUBLIC && <aside class="todo" role="note"><strong>To provide</strong><div><slot /></div></aside>}

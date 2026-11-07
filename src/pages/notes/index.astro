@@ -1,0 +1,24 @@
+---
+import { shown } from '../../data/site';
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+
+const notes = (await getCollection('notes', (e) => shown(e.data))).sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+---
+<Base title="Notes" description="A lab notebook: what I'm learning, papers, concepts, experiments, and how-tos." mode="docked">
+  <article class="prose">
+    <p class="eyebrow">Lab notebook</p>
+    <h1 style="font-size:38px;margin:0 0 8px">Notes</h1>
+    <p class="muted">What I'm learning, papers I'm reading, and things I had to figure out.</p>
+    {notes.map((n) => {
+      const date = n.data.date.toISOString().slice(0, 10);
+      return (
+        <a class="card" href={`/notes/${n.id}`} style="margin-top:14px">
+          <span class="muted mono" style="font-size:12px"><time datetime={date}>{date}</time> · {n.data.kind}</span>
+          <h2 class="card__title">{n.data.title}</h2>
+          <p>{n.data.summary}</p>
+        </a>
+      );
+    })}
+  </article>
+</Base>

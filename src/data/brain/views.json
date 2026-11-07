@@ -1,0 +1,17 @@
+{
+  "_about": "Camera views per brain state, shared by the 3D viewer and scripts/render-images.mjs so the poster matches the live view. dir points from the look-at target to the camera, in three.js world axes (+x right hemisphere, +y superior, -z anterior).",
+  "fovDeg": 30,
+  "fill": 0.86,
+  "modes": {
+    "surface": { "dir": [-0.8, 0.3, -0.52], "radius": 100, "center": "pial" },
+    "inflated": { "dir": [-0.72, 0.55, -0.42], "radius": 150, "center": "inflated" },
+    "section": { "dir": [-0.5, 0.74, -0.45], "radius": 100, "center": "pial" },
+    "atlas": { "dir": [-1, 0.1, -0.06], "radius": 96, "center": "pial" },
+    "docked": { "dir": [-0.8, 0.3, -0.52], "radius": 100, "center": "pial" },
+    "explore": { "dir": [-0.72, 0.5, -0.48], "radius": 96, "center": "pial" },
+    "deep": { "dir": [-0.74, 0.52, -0.42], "radius": 92, "center": "pial" }
+  },
+  "inflatedCenter": [0, 0, 0],
+  "section": { "startMm": 60, "topMm": 100, "bottomMm": -8 },
+  "idleRotationDegPerSec": 4
+}

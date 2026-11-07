@@ -1,0 +1,35 @@
+---
+import { shown } from '../data/site';
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import Status from '../components/Status.astro';
+
+const items = await getCollection('timeline', (e) => shown(e.data));
+const kinds = ['education', 'research', 'project', 'coursework', 'presentation', 'milestone', 'goal'] as const;
+---
+<Base title="Timeline" description="Education, research, projects, coursework, and goals, generated from data." mode="docked">
+  <article class="prose">
+    <p class="eyebrow">Timeline</p>
+    <h1 style="font-size:38px;margin:0 0 8px">Timeline</h1>
+    <p class="muted">Generated from <code>src/content/timeline.json</code>. Entries marked "placeholder" are waiting for confirmation.</p>
+    <ol class="tl">
+      {items.map(({ data }) => (
+        <li class:list={{ ph: data.source === 'placeholder' }}>
+          <p class="tl__meta mono">{data.date} · {data.kind}</p>
+          <h2 class="tl__title">{data.href ? <a href={data.href}>{data.title}</a> : data.title}</h2>
+          {data.detail && <p class="tl__detail">{data.detail}</p>}
+          <Status status={data.status} source={data.source} />
+        </li>
+      ))}
+    </ol>
+    <p class="muted" style="font-size:14px">Kinds: {kinds.join(', ')}.</p>
+  </article>
+</Base>
+<style>
+  .tl { list-style: none; padding: 0; margin: 28px 0; border-left: 1px solid var(--hairline); }
+  .tl li { position: relative; padding: 0 0 28px 24px; }
+  .tl li::before { content: ''; position: absolute; left: -5px; top: 6px; width: 9px; height: 9px; border-radius: 50%; background: var(--ground); border: 1px solid var(--accent); }
+  .tl__meta { margin: 0; font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
+  .tl__title { font-size: 20px !important; margin: 4px 0 6px !important; padding: 0 !important; border: 0 !important; }
+  .tl__detail { margin: 0 0 8px; font-size: 16px; color: var(--muted); }
+</style>

@@ -1,0 +1,34 @@
+---
+import { shown } from '../../data/site';
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import EntryCard from '../../components/EntryCard.astro';
+
+const entries = (await getCollection('projects', (e) => shown(e.data))).sort((a, b) => a.data.order - b.data.order);
+---
+<Base title="Projects" description="Software, data, and visualization projects, each with why it matters and its current status." mode="section">
+  <section class="panel" aria-labelledby="h">
+    <p class="eyebrow">Section</p>
+    <h1 id="h" style="font-size:34px;margin:0 0 8px">Projects</h1>
+    <p style="margin:0">
+      Scrolling this page moves an axial cut down through the cortex. The cut face shows the cortical ribbon and the
+      white matter inside it, both from the same reconstruction. You can also move the cut with the slider.
+    </p>
+  </section>
+  <section aria-label="Projects" style="margin-top:16px">
+    {entries.map((e, i) => (
+      <EntryCard
+        href={`/projects/${e.id}`}
+        title={e.data.title}
+        summary={e.data.summary}
+        status={e.data.status}
+        source={e.data.source}
+        tags={e.data.tags}
+        cover={e.data.cover}
+        meta={e.data.visibility === 'private' ? 'private repo' : e.data.period}
+        index={i}
+      />
+    ))}
+  </section>
+  <div style="height:40vh" aria-hidden="true"></div>
+</Base>

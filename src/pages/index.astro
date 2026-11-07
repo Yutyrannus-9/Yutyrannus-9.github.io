@@ -1,0 +1,76 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import Fact from '../components/Fact.astro';
+import Icon from '../components/Icon.astro';
+import LinkList from '../components/LinkList.astro';
+import EntryCard from '../components/EntryCard.astro';
+import Headshot from '../components/Headshot.astro';
+import { profile, site, shown } from '../data/site';
+
+const research = (await getCollection('research', (e) => shown(e.data))).sort((a, b) => a.data.order - b.data.order);
+const featured = research.find((r) => r.data.source !== 'placeholder');
+const now = (await getCollection('timeline', (e) => shown(e.data))).filter((t) => /present/.test(t.data.date));
+---
+<Base title={site.title} description="Joel Jaramillo: biomedical engineering undergraduate working on MRI pipelines, machine learning for brain data, and head modeling. The portfolio is built around a live 3D reconstruction of his own brain." mode="surface">
+  <section class="panel" aria-labelledby="intro">
+    <p class="eyebrow">{profile.headline.value}</p>
+    <div style="display:flex;gap:16px;align-items:center;margin:0 0 6px">
+      <Headshot size={84} />
+      <h1 id="intro" style="font-size:40px;margin:0"><Fact fact={profile.name} /></h1>
+    </div>
+    <p class="muted" style="margin:0 0 14px"><Fact fact={profile.program} /></p>
+    <p class="lede"><Fact fact={profile.positioning} /></p>
+    <p style="display:flex;gap:10px;flex-wrap:wrap;margin:18px 0 0">
+      <a class="btn btn--primary" href="/research">Explore my research <Icon name="arrowRight" /></a>
+      <a class="btn" href="/explore">Open the brain viewer</a>
+    </p>
+    <LinkList />
+  </section>
+
+  {now.length > 0 && (
+    <section class="panel" aria-labelledby="now">
+      <p class="eyebrow" id="now">Now</p>
+      <ul class="now">
+        {now.map(({ data }) => (
+          <li>
+            {data.href ? <a href={data.href}>{data.title}</a> : data.title}
+            <span class="muted mono">{data.date}</span>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )}
+
+  <section class="panel" aria-labelledby="looking">
+    <p class="eyebrow">Surface</p>
+    <h2 id="looking" style="font-size:22px;margin:0 0 8px">What you're looking at</h2>
+    <p style="margin:0">{site.brainLabel}</p>
+    <p class="muted" style="margin:10px 0 0;font-size:15px">
+      Each page is a different operation on the same brain: <a href="/research">slice</a> through its deep structures,
+      <a href="/projects">cut</a> through it, read the <a href="/about">atlas</a>, or <a href="/explore">explore</a> it freely. Switch the backdrop between the 3D model, my MRI slices, and a still image at the top right.
+      <a href="/methods">Methods</a>.
+    </p>
+  </section>
+
+  {featured && (
+    <section class="panel" aria-labelledby="featured">
+      <p class="eyebrow" id="featured">Featured case study</p>
+      <EntryCard
+        href={`/research/${featured.id}`}
+        title={featured.data.title}
+        summary={featured.data.summary}
+        status={featured.data.status}
+        source={featured.data.source}
+        tags={featured.data.tags}
+        cover={featured.data.cover}
+        level={3}
+      />
+    </section>
+  )}
+</Base>
+<style>
+  .now { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; font-size: 15px; }
+  .now li { display: grid; gap: 2px; }
+  .now .mono { font-size: 12px; }
+</style>

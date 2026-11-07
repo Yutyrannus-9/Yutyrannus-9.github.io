@@ -1,0 +1,30 @@
+---
+// An image from /public, or, while the file doesn't exist yet, a dashed tile
+// that names the exact path to drop it at. (The production build fails on
+// missing images: scripts/check-placeholders.mjs.)
+import { existsSync } from 'node:fs';
+import path from 'node:path';
+import Icon from './Icon.astro';
+import { PUBLIC } from '../data/site';
+interface Props { src: string; alt: string; class?: string; width?: number; height?: number; loading?: 'lazy' | 'eager' }
+const { src, alt, class: cls, width = 1200, height = 800, loading = 'lazy' } = Astro.props;
+const exists = existsSync(path.join(process.cwd(), 'public', src));
+---
+{exists ? (
+  <img class:list={['slot', cls]} src={src} alt={alt} width={width} height={height} loading={loading} decoding="async" />
+) : PUBLIC ? null : (
+  <div class:list={['slot slot--empty', cls]} role="img" aria-label={`Image to add: ${alt}`}>
+    <Icon name="imagePlus" />
+    <span class="mono">Add image</span>
+    <code>public{src}</code>
+  </div>
+)}
+<style>
+  .slot { display: block; width: 100%; height: auto; border-radius: 6px; border: 1px solid var(--hairline); background: var(--ground); object-fit: cover; }
+  .slot--empty {
+    aspect-ratio: 3 / 2; display: grid; place-content: center; justify-items: center; gap: 6px;
+    border: 1px dashed var(--ph); color: var(--ph); font-size: 13px; text-align: center; padding: 12px;
+  }
+  .slot--empty :global(svg) { width: 28px; height: 28px; }
+  .slot--empty code { font-size: 11px; color: var(--muted); word-break: break-all; }
+</style>

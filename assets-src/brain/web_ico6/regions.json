@@ -1,0 +1,1162 @@
+{
+ "atlas": "Desikan-Killiany (FreeSurfer aparc)",
+ "note": "Anatomical measurements only; no normative or clinical values.",
+ "regions": [
+  {
+   "id": "L:bankssts",
+   "hemi": "L",
+   "annot_index": 1,
+   "key": "bankssts",
+   "name": "Banks of superior temporal sulcus",
+   "lobe": "temporal",
+   "function_plain": "Perceiving speech, voices and biological motion; reading social cues.",
+   "color_rgb": [
+    25,
+    100,
+    40
+   ],
+   "area_mm2": 1077.0,
+   "gray_volume_mm3": 2435.0,
+   "thickness_mm": 2.369
+  },
+  {
+   "id": "L:caudalanteriorcingulate",
+   "hemi": "L",
+   "annot_index": 2,
+   "key": "caudalanteriorcingulate",
+   "name": "Caudal anterior cingulate",
+   "lobe": "cingulate",
+   "function_plain": "Noticing conflicts and errors; effortful control.",
+   "color_rgb": [
+    125,
+    100,
+    160
+   ],
+   "area_mm2": 862.0,
+   "gray_volume_mm3": 2095.0,
+   "thickness_mm": 2.124
+  },
+  {
+   "id": "L:caudalmiddlefrontal",
+   "hemi": "L",
+   "annot_index": 3,
+   "key": "caudalmiddlefrontal",
+   "name": "Caudal middle frontal",
+   "lobe": "frontal",
+   "function_plain": "Frontal eye fields; directing attention and working memory.",
+   "color_rgb": [
+    100,
+    25,
+    0
+   ],
+   "area_mm2": 2721.0,
+   "gray_volume_mm3": 7095.0,
+   "thickness_mm": 2.413
+  },
+  {
+   "id": "L:cuneus",
+   "hemi": "L",
+   "annot_index": 5,
+   "key": "cuneus",
+   "name": "Cuneus",
+   "lobe": "occipital",
+   "function_plain": "Early visual processing for the lower visual field.",
+   "color_rgb": [
+    220,
+    20,
+    100
+   ],
+   "area_mm2": 1876.0,
+   "gray_volume_mm3": 3899.0,
+   "thickness_mm": 1.915
+  },
+  {
+   "id": "L:entorhinal",
+   "hemi": "L",
+   "annot_index": 6,
+   "key": "entorhinal",
+   "name": "Entorhinal cortex",
+   "lobe": "temporal",
+   "function_plain": "Main gateway into the hippocampus; spatial and episodic memory.",
+   "color_rgb": [
+    220,
+    20,
+    10
+   ],
+   "area_mm2": 472.0,
+   "gray_volume_mm3": 2182.0,
+   "thickness_mm": 3.148
+  },
+  {
+   "id": "L:fusiform",
+   "hemi": "L",
+   "annot_index": 7,
+   "key": "fusiform",
+   "name": "Fusiform gyrus",
+   "lobe": "temporal",
+   "function_plain": "Recognizing faces, written words and objects.",
+   "color_rgb": [
+    180,
+    220,
+    140
+   ],
+   "area_mm2": 3986.0,
+   "gray_volume_mm3": 12214.0,
+   "thickness_mm": 2.704
+  },
+  {
+   "id": "L:inferiorparietal",
+   "hemi": "L",
+   "annot_index": 8,
+   "key": "inferiorparietal",
+   "name": "Inferior parietal",
+   "lobe": "parietal",
+   "function_plain": "Meaning, reading and number processing; re-orienting attention.",
+   "color_rgb": [
+    220,
+    60,
+    220
+   ],
+   "area_mm2": 6762.0,
+   "gray_volume_mm3": 18643.0,
+   "thickness_mm": 2.506
+  },
+  {
+   "id": "L:inferiortemporal",
+   "hemi": "L",
+   "annot_index": 9,
+   "key": "inferiortemporal",
+   "name": "Inferior temporal",
+   "lobe": "temporal",
+   "function_plain": "Recognizing visual objects and categories.",
+   "color_rgb": [
+    180,
+    40,
+    120
+   ],
+   "area_mm2": 4647.0,
+   "gray_volume_mm3": 15259.0,
+   "thickness_mm": 2.67
+  },
+  {
+   "id": "L:isthmuscingulate",
+   "hemi": "L",
+   "annot_index": 10,
+   "key": "isthmuscingulate",
+   "name": "Isthmus cingulate",
+   "lobe": "cingulate",
+   "function_plain": "Retrosplenial area: navigation and autobiographical memory.",
+   "color_rgb": [
+    140,
+    20,
+    140
+   ],
+   "area_mm2": 1229.0,
+   "gray_volume_mm3": 3105.0,
+   "thickness_mm": 2.161
+  },
+  {
+   "id": "L:lateraloccipital",
+   "hemi": "L",
+   "annot_index": 11,
+   "key": "lateraloccipital",
+   "name": "Lateral occipital",
+   "lobe": "occipital",
+   "function_plain": "Perceiving object shape and visual motion.",
+   "color_rgb": [
+    20,
+    30,
+    140
+   ],
+   "area_mm2": 6708.0,
+   "gray_volume_mm3": 16462.0,
+   "thickness_mm": 2.232
+  },
+  {
+   "id": "L:lateralorbitofrontal",
+   "hemi": "L",
+   "annot_index": 12,
+   "key": "lateralorbitofrontal",
+   "name": "Lateral orbitofrontal",
+   "lobe": "frontal",
+   "function_plain": "Weighing rewards and punishments; flexible decisions.",
+   "color_rgb": [
+    35,
+    75,
+    50
+   ],
+   "area_mm2": 3475.0,
+   "gray_volume_mm3": 9913.0,
+   "thickness_mm": 2.604
+  },
+  {
+   "id": "L:lingual",
+   "hemi": "L",
+   "annot_index": 13,
+   "key": "lingual",
+   "name": "Lingual gyrus",
+   "lobe": "occipital",
+   "function_plain": "Visual processing for the upper visual field, color and letters.",
+   "color_rgb": [
+    225,
+    140,
+    140
+   ],
+   "area_mm2": 3659.0,
+   "gray_volume_mm3": 8324.0,
+   "thickness_mm": 2.121
+  },
+  {
+   "id": "L:medialorbitofrontal",
+   "hemi": "L",
+   "annot_index": 14,
+   "key": "medialorbitofrontal",
+   "name": "Medial orbitofrontal",
+   "lobe": "frontal",
+   "function_plain": "Valuing options; emotion-guided decisions.",
+   "color_rgb": [
+    200,
+    35,
+    75
+   ],
+   "area_mm2": 2625.0,
+   "gray_volume_mm3": 7101.0,
+   "thickness_mm": 2.349
+  },
+  {
+   "id": "L:middletemporal",
+   "hemi": "L",
+   "annot_index": 15,
+   "key": "middletemporal",
+   "name": "Middle temporal",
+   "lobe": "temporal",
+   "function_plain": "Word meaning and language comprehension.",
+   "color_rgb": [
+    160,
+    100,
+    50
+   ],
+   "area_mm2": 4297.0,
+   "gray_volume_mm3": 14418.0,
+   "thickness_mm": 2.771
+  },
+  {
+   "id": "L:parahippocampal",
+   "hemi": "L",
+   "annot_index": 16,
+   "key": "parahippocampal",
+   "name": "Parahippocampal gyrus",
+   "lobe": "temporal",
+   "function_plain": "Recognizing places and scenes; storing new memories.",
+   "color_rgb": [
+    20,
+    220,
+    60
+   ],
+   "area_mm2": 749.0,
+   "gray_volume_mm3": 2505.0,
+   "thickness_mm": 2.829
+  },
+  {
+   "id": "L:paracentral",
+   "hemi": "L",
+   "annot_index": 17,
+   "key": "paracentral",
+   "name": "Paracentral lobule",
+   "lobe": "frontal",
+   "function_plain": "Movement and sensation of the legs and feet.",
+   "color_rgb": [
+    60,
+    220,
+    60
+   ],
+   "area_mm2": 1558.0,
+   "gray_volume_mm3": 4514.0,
+   "thickness_mm": 2.594
+  },
+  {
+   "id": "L:parsopercularis",
+   "hemi": "L",
+   "annot_index": 18,
+   "key": "parsopercularis",
+   "name": "Pars opercularis",
+   "lobe": "frontal",
+   "function_plain": "Part of Broca's area; planning speech.",
+   "color_rgb": [
+    220,
+    180,
+    140
+   ],
+   "area_mm2": 2240.0,
+   "gray_volume_mm3": 6372.0,
+   "thickness_mm": 2.529
+  },
+  {
+   "id": "L:parsorbitalis",
+   "hemi": "L",
+   "annot_index": 19,
+   "key": "parsorbitalis",
+   "name": "Pars orbitalis",
+   "lobe": "frontal",
+   "function_plain": "Language meaning and semantic retrieval.",
+   "color_rgb": [
+    20,
+    100,
+    50
+   ],
+   "area_mm2": 964.0,
+   "gray_volume_mm3": 2995.0,
+   "thickness_mm": 2.489
+  },
+  {
+   "id": "L:parstriangularis",
+   "hemi": "L",
+   "annot_index": 20,
+   "key": "parstriangularis",
+   "name": "Pars triangularis",
+   "lobe": "frontal",
+   "function_plain": "Part of Broca's area; choosing words and meanings.",
+   "color_rgb": [
+    220,
+    60,
+    20
+   ],
+   "area_mm2": 2031.0,
+   "gray_volume_mm3": 5240.0,
+   "thickness_mm": 2.36
+  },
+  {
+   "id": "L:pericalcarine",
+   "hemi": "L",
+   "annot_index": 21,
+   "key": "pericalcarine",
+   "name": "Pericalcarine",
+   "lobe": "occipital",
+   "function_plain": "Primary visual cortex (V1).",
+   "color_rgb": [
+    120,
+    100,
+    60
+   ],
+   "area_mm2": 1700.0,
+   "gray_volume_mm3": 2770.0,
+   "thickness_mm": 1.746
+  },
+  {
+   "id": "L:postcentral",
+   "hemi": "L",
+   "annot_index": 22,
+   "key": "postcentral",
+   "name": "Postcentral gyrus",
+   "lobe": "parietal",
+   "function_plain": "Primary touch and body-position cortex.",
+   "color_rgb": [
+    220,
+    20,
+    20
+   ],
+   "area_mm2": 5385.0,
+   "gray_volume_mm3": 12692.0,
+   "thickness_mm": 2.122
+  },
+  {
+   "id": "L:posteriorcingulate",
+   "hemi": "L",
+   "annot_index": 23,
+   "key": "posteriorcingulate",
+   "name": "Posterior cingulate",
+   "lobe": "cingulate",
+   "function_plain": "Hub of the default-mode network; self-reflection and memory.",
+   "color_rgb": [
+    220,
+    180,
+    220
+   ],
+   "area_mm2": 1856.0,
+   "gray_volume_mm3": 4897.0,
+   "thickness_mm": 2.374
+  },
+  {
+   "id": "L:precentral",
+   "hemi": "L",
+   "annot_index": 24,
+   "key": "precentral",
+   "name": "Precentral gyrus",
+   "lobe": "frontal",
+   "function_plain": "Primary motor cortex; voluntary movement.",
+   "color_rgb": [
+    60,
+    20,
+    220
+   ],
+   "area_mm2": 5400.0,
+   "gray_volume_mm3": 15292.0,
+   "thickness_mm": 2.606
+  },
+  {
+   "id": "L:precuneus",
+   "hemi": "L",
+   "annot_index": 25,
+   "key": "precuneus",
+   "name": "Precuneus",
+   "lobe": "parietal",
+   "function_plain": "Mental imagery, episodic memory and self-awareness.",
+   "color_rgb": [
+    160,
+    140,
+    180
+   ],
+   "area_mm2": 5074.0,
+   "gray_volume_mm3": 13148.0,
+   "thickness_mm": 2.468
+  },
+  {
+   "id": "L:rostralanteriorcingulate",
+   "hemi": "L",
+   "annot_index": 26,
+   "key": "rostralanteriorcingulate",
+   "name": "Rostral anterior cingulate",
+   "lobe": "cingulate",
+   "function_plain": "Emotion regulation and mood.",
+   "color_rgb": [
+    80,
+    20,
+    140
+   ],
+   "area_mm2": 1364.0,
+   "gray_volume_mm3": 3903.0,
+   "thickness_mm": 2.534
+  },
+  {
+   "id": "L:rostralmiddlefrontal",
+   "hemi": "L",
+   "annot_index": 27,
+   "key": "rostralmiddlefrontal",
+   "name": "Rostral middle frontal",
+   "lobe": "frontal",
+   "function_plain": "Dorsolateral prefrontal cortex: working memory, planning, self-control.",
+   "color_rgb": [
+    75,
+    50,
+    125
+   ],
+   "area_mm2": 7991.0,
+   "gray_volume_mm3": 20767.0,
+   "thickness_mm": 2.299
+  },
+  {
+   "id": "L:superiorfrontal",
+   "hemi": "L",
+   "annot_index": 28,
+   "key": "superiorfrontal",
+   "name": "Superior frontal",
+   "lobe": "frontal",
+   "function_plain": "High-level control; contains the supplementary motor area.",
+   "color_rgb": [
+    20,
+    220,
+    160
+   ],
+   "area_mm2": 10035.0,
+   "gray_volume_mm3": 28903.0,
+   "thickness_mm": 2.588
+  },
+  {
+   "id": "L:superiorparietal",
+   "hemi": "L",
+   "annot_index": 29,
+   "key": "superiorparietal",
+   "name": "Superior parietal",
+   "lobe": "parietal",
+   "function_plain": "Spatial attention and guiding reaching movements.",
+   "color_rgb": [
+    20,
+    180,
+    140
+   ],
+   "area_mm2": 7134.0,
+   "gray_volume_mm3": 17923.0,
+   "thickness_mm": 2.319
+  },
+  {
+   "id": "L:superiortemporal",
+   "hemi": "L",
+   "annot_index": 30,
+   "key": "superiortemporal",
+   "name": "Superior temporal",
+   "lobe": "temporal",
+   "function_plain": "Hearing and speech perception (Wernicke's area on the left).",
+   "color_rgb": [
+    140,
+    220,
+    220
+   ],
+   "area_mm2": 4660.0,
+   "gray_volume_mm3": 14455.0,
+   "thickness_mm": 2.745
+  },
+  {
+   "id": "L:supramarginal",
+   "hemi": "L",
+   "annot_index": 31,
+   "key": "supramarginal",
+   "name": "Supramarginal gyrus",
+   "lobe": "parietal",
+   "function_plain": "Sound-based language processing, empathy and tool use.",
+   "color_rgb": [
+    80,
+    160,
+    20
+   ],
+   "area_mm2": 4576.0,
+   "gray_volume_mm3": 13382.0,
+   "thickness_mm": 2.619
+  },
+  {
+   "id": "L:frontalpole",
+   "hemi": "L",
+   "annot_index": 32,
+   "key": "frontalpole",
+   "name": "Frontal pole",
+   "lobe": "frontal",
+   "function_plain": "Abstract reasoning and juggling several goals.",
+   "color_rgb": [
+    100,
+    0,
+    100
+   ],
+   "area_mm2": 365.0,
+   "gray_volume_mm3": 1309.0,
+   "thickness_mm": 2.553
+  },
+  {
+   "id": "L:temporalpole",
+   "hemi": "L",
+   "annot_index": 33,
+   "key": "temporalpole",
+   "name": "Temporal pole",
+   "lobe": "temporal",
+   "function_plain": "Social and emotional knowledge; naming people.",
+   "color_rgb": [
+    70,
+    20,
+    170
+   ],
+   "area_mm2": 545.0,
+   "gray_volume_mm3": 2403.0,
+   "thickness_mm": 3.397
+  },
+  {
+   "id": "L:transversetemporal",
+   "hemi": "L",
+   "annot_index": 34,
+   "key": "transversetemporal",
+   "name": "Transverse temporal (Heschl's)",
+   "lobe": "temporal",
+   "function_plain": "Primary auditory cortex.",
+   "color_rgb": [
+    150,
+    150,
+    200
+   ],
+   "area_mm2": 549.0,
+   "gray_volume_mm3": 1676.0,
+   "thickness_mm": 2.628
+  },
+  {
+   "id": "L:insula",
+   "hemi": "L",
+   "annot_index": 35,
+   "key": "insula",
+   "name": "Insula",
+   "lobe": "insula",
+   "function_plain": "Sensing the body's internal state; taste, emotion and awareness.",
+   "color_rgb": [
+    255,
+    192,
+    32
+   ],
+   "area_mm2": 3173.0,
+   "gray_volume_mm3": 9560.0,
+   "thickness_mm": 2.934
+  },
+  {
+   "id": "R:bankssts",
+   "hemi": "R",
+   "annot_index": 1,
+   "key": "bankssts",
+   "name": "Banks of superior temporal sulcus",
+   "lobe": "temporal",
+   "function_plain": "Perceiving speech, voices and biological motion; reading social cues.",
+   "color_rgb": [
+    25,
+    100,
+    40
+   ],
+   "area_mm2": 1174.0,
+   "gray_volume_mm3": 3203.0,
+   "thickness_mm": 2.75
+  },
+  {
+   "id": "R:caudalanteriorcingulate",
+   "hemi": "R",
+   "annot_index": 2,
+   "key": "caudalanteriorcingulate",
+   "name": "Caudal anterior cingulate",
+   "lobe": "cingulate",
+   "function_plain": "Noticing conflicts and errors; effortful control.",
+   "color_rgb": [
+    125,
+    100,
+    160
+   ],
+   "area_mm2": 1085.0,
+   "gray_volume_mm3": 2725.0,
+   "thickness_mm": 2.257
+  },
+  {
+   "id": "R:caudalmiddlefrontal",
+   "hemi": "R",
+   "annot_index": 3,
+   "key": "caudalmiddlefrontal",
+   "name": "Caudal middle frontal",
+   "lobe": "frontal",
+   "function_plain": "Frontal eye fields; directing attention and working memory.",
+   "color_rgb": [
+    100,
+    25,
+    0
+   ],
+   "area_mm2": 3464.0,
+   "gray_volume_mm3": 9314.0,
+   "thickness_mm": 2.463
+  },
+  {
+   "id": "R:cuneus",
+   "hemi": "R",
+   "annot_index": 5,
+   "key": "cuneus",
+   "name": "Cuneus",
+   "lobe": "occipital",
+   "function_plain": "Early visual processing for the lower visual field.",
+   "color_rgb": [
+    220,
+    20,
+    100
+   ],
+   "area_mm2": 1931.0,
+   "gray_volume_mm3": 3894.0,
+   "thickness_mm": 1.927
+  },
+  {
+   "id": "R:entorhinal",
+   "hemi": "R",
+   "annot_index": 6,
+   "key": "entorhinal",
+   "name": "Entorhinal cortex",
+   "lobe": "temporal",
+   "function_plain": "Main gateway into the hippocampus; spatial and episodic memory.",
+   "color_rgb": [
+    220,
+    20,
+    10
+   ],
+   "area_mm2": 487.0,
+   "gray_volume_mm3": 1902.0,
+   "thickness_mm": 3.114
+  },
+  {
+   "id": "R:fusiform",
+   "hemi": "R",
+   "annot_index": 7,
+   "key": "fusiform",
+   "name": "Fusiform gyrus",
+   "lobe": "temporal",
+   "function_plain": "Recognizing faces, written words and objects.",
+   "color_rgb": [
+    180,
+    220,
+    140
+   ],
+   "area_mm2": 4064.0,
+   "gray_volume_mm3": 12945.0,
+   "thickness_mm": 2.742
+  },
+  {
+   "id": "R:inferiorparietal",
+   "hemi": "R",
+   "annot_index": 8,
+   "key": "inferiorparietal",
+   "name": "Inferior parietal",
+   "lobe": "parietal",
+   "function_plain": "Meaning, reading and number processing; re-orienting attention.",
+   "color_rgb": [
+    220,
+    60,
+    220
+   ],
+   "area_mm2": 6777.0,
+   "gray_volume_mm3": 19645.0,
+   "thickness_mm": 2.565
+  },
+  {
+   "id": "R:inferiortemporal",
+   "hemi": "R",
+   "annot_index": 9,
+   "key": "inferiortemporal",
+   "name": "Inferior temporal",
+   "lobe": "temporal",
+   "function_plain": "Recognizing visual objects and categories.",
+   "color_rgb": [
+    180,
+    40,
+    120
+   ],
+   "area_mm2": 3739.0,
+   "gray_volume_mm3": 12854.0,
+   "thickness_mm": 2.815
+  },
+  {
+   "id": "R:isthmuscingulate",
+   "hemi": "R",
+   "annot_index": 10,
+   "key": "isthmuscingulate",
+   "name": "Isthmus cingulate",
+   "lobe": "cingulate",
+   "function_plain": "Retrosplenial area: navigation and autobiographical memory.",
+   "color_rgb": [
+    140,
+    20,
+    140
+   ],
+   "area_mm2": 1125.0,
+   "gray_volume_mm3": 2920.0,
+   "thickness_mm": 2.15
+  },
+  {
+   "id": "R:lateraloccipital",
+   "hemi": "R",
+   "annot_index": 11,
+   "key": "lateraloccipital",
+   "name": "Lateral occipital",
+   "lobe": "occipital",
+   "function_plain": "Perceiving object shape and visual motion.",
+   "color_rgb": [
+    20,
+    30,
+    140
+   ],
+   "area_mm2": 6149.0,
+   "gray_volume_mm3": 14992.0,
+   "thickness_mm": 2.172
+  },
+  {
+   "id": "R:lateralorbitofrontal",
+   "hemi": "R",
+   "annot_index": 12,
+   "key": "lateralorbitofrontal",
+   "name": "Lateral orbitofrontal",
+   "lobe": "frontal",
+   "function_plain": "Weighing rewards and punishments; flexible decisions.",
+   "color_rgb": [
+    35,
+    75,
+    50
+   ],
+   "area_mm2": 3351.0,
+   "gray_volume_mm3": 9412.0,
+   "thickness_mm": 2.624
+  },
+  {
+   "id": "R:lingual",
+   "hemi": "R",
+   "annot_index": 13,
+   "key": "lingual",
+   "name": "Lingual gyrus",
+   "lobe": "occipital",
+   "function_plain": "Visual processing for the upper visual field, color and letters.",
+   "color_rgb": [
+    225,
+    140,
+    140
+   ],
+   "area_mm2": 3333.0,
+   "gray_volume_mm3": 7859.0,
+   "thickness_mm": 2.138
+  },
+  {
+   "id": "R:medialorbitofrontal",
+   "hemi": "R",
+   "annot_index": 14,
+   "key": "medialorbitofrontal",
+   "name": "Medial orbitofrontal",
+   "lobe": "frontal",
+   "function_plain": "Valuing options; emotion-guided decisions.",
+   "color_rgb": [
+    200,
+    35,
+    75
+   ],
+   "area_mm2": 2487.0,
+   "gray_volume_mm3": 6785.0,
+   "thickness_mm": 2.398
+  },
+  {
+   "id": "R:middletemporal",
+   "hemi": "R",
+   "annot_index": 15,
+   "key": "middletemporal",
+   "name": "Middle temporal",
+   "lobe": "temporal",
+   "function_plain": "Word meaning and language comprehension.",
+   "color_rgb": [
+    160,
+    100,
+    50
+   ],
+   "area_mm2": 4286.0,
+   "gray_volume_mm3": 16020.0,
+   "thickness_mm": 2.972
+  },
+  {
+   "id": "R:parahippocampal",
+   "hemi": "R",
+   "annot_index": 16,
+   "key": "parahippocampal",
+   "name": "Parahippocampal gyrus",
+   "lobe": "temporal",
+   "function_plain": "Recognizing places and scenes; storing new memories.",
+   "color_rgb": [
+    20,
+    220,
+    60
+   ],
+   "area_mm2": 859.0,
+   "gray_volume_mm3": 2610.0,
+   "thickness_mm": 2.709
+  },
+  {
+   "id": "R:paracentral",
+   "hemi": "R",
+   "annot_index": 17,
+   "key": "paracentral",
+   "name": "Paracentral lobule",
+   "lobe": "frontal",
+   "function_plain": "Movement and sensation of the legs and feet.",
+   "color_rgb": [
+    60,
+    220,
+    60
+   ],
+   "area_mm2": 1918.0,
+   "gray_volume_mm3": 4890.0,
+   "thickness_mm": 2.405
+  },
+  {
+   "id": "R:parsopercularis",
+   "hemi": "R",
+   "annot_index": 18,
+   "key": "parsopercularis",
+   "name": "Pars opercularis",
+   "lobe": "frontal",
+   "function_plain": "Part of Broca's area; planning speech.",
+   "color_rgb": [
+    220,
+    180,
+    140
+   ],
+   "area_mm2": 1769.0,
+   "gray_volume_mm3": 5153.0,
+   "thickness_mm": 2.572
+  },
+  {
+   "id": "R:parsorbitalis",
+   "hemi": "R",
+   "annot_index": 19,
+   "key": "parsorbitalis",
+   "name": "Pars orbitalis",
+   "lobe": "frontal",
+   "function_plain": "Language meaning and semantic retrieval.",
+   "color_rgb": [
+    20,
+    100,
+    50
+   ],
+   "area_mm2": 1094.0,
+   "gray_volume_mm3": 3489.0,
+   "thickness_mm": 2.572
+  },
+  {
+   "id": "R:parstriangularis",
+   "hemi": "R",
+   "annot_index": 20,
+   "key": "parstriangularis",
+   "name": "Pars triangularis",
+   "lobe": "frontal",
+   "function_plain": "Part of Broca's area; choosing words and meanings.",
+   "color_rgb": [
+    220,
+    60,
+    20
+   ],
+   "area_mm2": 1858.0,
+   "gray_volume_mm3": 5013.0,
+   "thickness_mm": 2.485
+  },
+  {
+   "id": "R:pericalcarine",
+   "hemi": "R",
+   "annot_index": 21,
+   "key": "pericalcarine",
+   "name": "Pericalcarine",
+   "lobe": "occipital",
+   "function_plain": "Primary visual cortex (V1).",
+   "color_rgb": [
+    120,
+    100,
+    60
+   ],
+   "area_mm2": 1602.0,
+   "gray_volume_mm3": 2592.0,
+   "thickness_mm": 1.725
+  },
+  {
+   "id": "R:postcentral",
+   "hemi": "R",
+   "annot_index": 22,
+   "key": "postcentral",
+   "name": "Postcentral gyrus",
+   "lobe": "parietal",
+   "function_plain": "Primary touch and body-position cortex.",
+   "color_rgb": [
+    220,
+    20,
+    20
+   ],
+   "area_mm2": 5499.0,
+   "gray_volume_mm3": 12781.0,
+   "thickness_mm": 2.125
+  },
+  {
+   "id": "R:posteriorcingulate",
+   "hemi": "R",
+   "annot_index": 23,
+   "key": "posteriorcingulate",
+   "name": "Posterior cingulate",
+   "lobe": "cingulate",
+   "function_plain": "Hub of the default-mode network; self-reflection and memory.",
+   "color_rgb": [
+    220,
+    180,
+    220
+   ],
+   "area_mm2": 1953.0,
+   "gray_volume_mm3": 5042.0,
+   "thickness_mm": 2.236
+  },
+  {
+   "id": "R:precentral",
+   "hemi": "R",
+   "annot_index": 24,
+   "key": "precentral",
+   "name": "Precentral gyrus",
+   "lobe": "frontal",
+   "function_plain": "Primary motor cortex; voluntary movement.",
+   "color_rgb": [
+    60,
+    20,
+    220
+   ],
+   "area_mm2": 6648.0,
+   "gray_volume_mm3": 18620.0,
+   "thickness_mm": 2.596
+  },
+  {
+   "id": "R:precuneus",
+   "hemi": "R",
+   "annot_index": 25,
+   "key": "precuneus",
+   "name": "Precuneus",
+   "lobe": "parietal",
+   "function_plain": "Mental imagery, episodic memory and self-awareness.",
+   "color_rgb": [
+    160,
+    140,
+    180
+   ],
+   "area_mm2": 5142.0,
+   "gray_volume_mm3": 13393.0,
+   "thickness_mm": 2.45
+  },
+  {
+   "id": "R:rostralanteriorcingulate",
+   "hemi": "R",
+   "annot_index": 26,
+   "key": "rostralanteriorcingulate",
+   "name": "Rostral anterior cingulate",
+   "lobe": "cingulate",
+   "function_plain": "Emotion regulation and mood.",
+   "color_rgb": [
+    80,
+    20,
+    140
+   ],
+   "area_mm2": 1002.0,
+   "gray_volume_mm3": 3194.0,
+   "thickness_mm": 2.653
+  },
+  {
+   "id": "R:rostralmiddlefrontal",
+   "hemi": "R",
+   "annot_index": 27,
+   "key": "rostralmiddlefrontal",
+   "name": "Rostral middle frontal",
+   "lobe": "frontal",
+   "function_plain": "Dorsolateral prefrontal cortex: working memory, planning, self-control.",
+   "color_rgb": [
+    75,
+    50,
+    125
+   ],
+   "area_mm2": 7066.0,
+   "gray_volume_mm3": 19577.0,
+   "thickness_mm": 2.344
+  },
+  {
+   "id": "R:superiorfrontal",
+   "hemi": "R",
+   "annot_index": 28,
+   "key": "superiorfrontal",
+   "name": "Superior frontal",
+   "lobe": "frontal",
+   "function_plain": "High-level control; contains the supplementary motor area.",
+   "color_rgb": [
+    20,
+    220,
+    160
+   ],
+   "area_mm2": 9979.0,
+   "gray_volume_mm3": 28555.0,
+   "thickness_mm": 2.538
+  },
+  {
+   "id": "R:superiorparietal",
+   "hemi": "R",
+   "annot_index": 29,
+   "key": "superiorparietal",
+   "name": "Superior parietal",
+   "lobe": "parietal",
+   "function_plain": "Spatial attention and guiding reaching movements.",
+   "color_rgb": [
+    20,
+    180,
+    140
+   ],
+   "area_mm2": 7493.0,
+   "gray_volume_mm3": 19067.0,
+   "thickness_mm": 2.32
+  },
+  {
+   "id": "R:superiortemporal",
+   "hemi": "R",
+   "annot_index": 30,
+   "key": "superiortemporal",
+   "name": "Superior temporal",
+   "lobe": "temporal",
+   "function_plain": "Hearing and speech perception (Wernicke's area on the left).",
+   "color_rgb": [
+    140,
+    220,
+    220
+   ],
+   "area_mm2": 4557.0,
+   "gray_volume_mm3": 14688.0,
+   "thickness_mm": 2.855
+  },
+  {
+   "id": "R:supramarginal",
+   "hemi": "R",
+   "annot_index": 31,
+   "key": "supramarginal",
+   "name": "Supramarginal gyrus",
+   "lobe": "parietal",
+   "function_plain": "Sound-based language processing, empathy and tool use.",
+   "color_rgb": [
+    80,
+    160,
+    20
+   ],
+   "area_mm2": 4405.0,
+   "gray_volume_mm3": 12456.0,
+   "thickness_mm": 2.592
+  },
+  {
+   "id": "R:frontalpole",
+   "hemi": "R",
+   "annot_index": 32,
+   "key": "frontalpole",
+   "name": "Frontal pole",
+   "lobe": "frontal",
+   "function_plain": "Abstract reasoning and juggling several goals.",
+   "color_rgb": [
+    100,
+    0,
+    100
+   ],
+   "area_mm2": 386.0,
+   "gray_volume_mm3": 1325.0,
+   "thickness_mm": 2.58
+  },
+  {
+   "id": "R:temporalpole",
+   "hemi": "R",
+   "annot_index": 33,
+   "key": "temporalpole",
+   "name": "Temporal pole",
+   "lobe": "temporal",
+   "function_plain": "Social and emotional knowledge; naming people.",
+   "color_rgb": [
+    70,
+    20,
+    170
+   ],
+   "area_mm2": 513.0,
+   "gray_volume_mm3": 2569.0,
+   "thickness_mm": 3.578
+  },
+  {
+   "id": "R:transversetemporal",
+   "hemi": "R",
+   "annot_index": 34,
+   "key": "transversetemporal",
+   "name": "Transverse temporal (Heschl's)",
+   "lobe": "temporal",
+   "function_plain": "Primary auditory cortex.",
+   "color_rgb": [
+    150,
+    150,
+    200
+   ],
+   "area_mm2": 396.0,
+   "gray_volume_mm3": 1141.0,
+   "thickness_mm": 2.613
+  },
+  {
+   "id": "R:insula",
+   "hemi": "R",
+   "annot_index": 35,
+   "key": "insula",
+   "name": "Insula",
+   "lobe": "insula",
+   "function_plain": "Sensing the body's internal state; taste, emotion and awareness.",
+   "color_rgb": [
+    255,
+    192,
+    32
+   ],
+   "area_mm2": 3157.0,
+   "gray_volume_mm3": 9690.0,
+   "thickness_mm": 3.033
+  }
+ ]
+}

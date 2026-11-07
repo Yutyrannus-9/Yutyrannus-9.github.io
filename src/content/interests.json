@@ -1,0 +1,6 @@
+[
+  { "id": "neuroengineering", "label": "Neuroengineering", "why": "Head modeling and electric-field simulation in the Bikson Lab.", "source": "resume" },
+  { "id": "neuromodulation", "label": "Neuromodulation", "why": "Stimulation-electrode placement and field modeling.", "source": "resume" },
+  { "id": "mri", "label": "MRI imaging", "why": "Structural MRI pipelines in the ZVR Lab, and my own scan.", "source": "resume" },
+  { "id": "ml", "label": "Machine learning and deep learning for brain data", "why": "Classification in the ZVR Lab; EEG decoding in NeuroForge.", "source": "resume" }
+]

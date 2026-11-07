@@ -1,0 +1,21 @@
+---
+import Base from '../layouts/Base.astro';
+import ExplorePanel from '../components/ExplorePanel';
+import { mriOn } from '../data/site';
+---
+<Base title="Explore" description="A free viewer for my brain: glass cortex, deep structures, the cortical atlas, and a slice plane through my T1 MRI." mode="explore">
+  <section class="panel" aria-labelledby="h">
+    <p class="eyebrow">Viewer</p>
+    <h1 id="h" style="font-size:34px;margin:0 0 8px">Explore</h1>
+    <p style="margin:0 0 4px">
+      Drag to rotate. Make the cortex glass to see the deep structures inside and click one to name it{mriOn && ', or move the MRI plane through the brain'}.
+    </p>
+    <p class="muted" style="margin:0;font-size:14px">
+      Deep structures are meshes from FreeSurfer's labels of my scan.{mriOn && ' The plane shows my T1 MRI, brain only, resampled to 1.5 mm.'}
+      Anatomical, not diagnostic. <a href="/methods">Methods</a>.
+    </p>
+  </section>
+  <section class="panel" aria-label="Viewer controls">
+    <ExplorePanel client:load mriEnabled={mriOn} />
+  </section>
+</Base>

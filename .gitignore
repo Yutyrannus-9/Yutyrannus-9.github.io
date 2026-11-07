@@ -1,0 +1,26 @@
+node_modules/
+dist/
+.astro/
+.vercel/
+.env
+.env.*
+.DS_Store
+# Raw medical data must never enter this repo. Only the surface files in
+# assets-src/brain/web_ico6 are allowed (see README "Privacy").
+*.nii
+*.nii.gz
+*.mgz
+*.dcm
+*.annot
+*.gii
+*.raw.gz
+# Full-resolution (1 mm) volumes stay local. Only the 1.5 mm derivatives in
+# public/brain/mri are published, and only after a professional read (D2).
+assets-src/brain/web_volumes/
+# The 1.5 mm display volume is kept out of git (and so out of the public repo and
+# any deploy) until a radiologist or the study team has read the scan (D2).
+# Delete the next line once src/data/site.ts has mri.professionalRead = true.
+public/brain/mri/
+
+# Generated business-card files (rebuild with node print/card/build-card.mjs)
+print/card/out/

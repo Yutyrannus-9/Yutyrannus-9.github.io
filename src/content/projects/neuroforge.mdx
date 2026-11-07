@@ -1,0 +1,32 @@
+---
+title: 'NeuroForge: cross-subject EEG motor-imagery decoding'
+summary: 'A reproducible brain-computer-interface pipeline that measures how much motor-imagery decoding accuracy drops when a model meets a new person.'
+why: 'Decoders that work for one person often fail on the next. Measuring that cross-subject drop is the first step toward BCIs that generalize.'
+status: independent
+source: resume
+order: 2
+stack: ['Python', 'MNE-Python', 'MOABB', 'scikit-learn', 'pyRiemann', 'EEGNet', 'pytest', 'GitHub Actions']
+tags: [eeg, bci, machine-learning, python, reproducibility]
+visibility: private
+cover:
+  src: '/images/projects/neuroforge/loso-vs-within.png'
+  alt: 'Accuracy within session versus leave-one-subject-out'
+images:
+  - src: '/images/projects/neuroforge/loso-vs-within.png'
+    alt: 'Decoding accuracy, within-session versus leave-one-subject-out'
+    caption: 'The cross-subject accuracy drop.'
+  - src: '/images/projects/neuroforge/pipelines.png'
+    alt: 'Comparison of CSP+LDA, Riemannian, and EEGNet pipelines'
+    caption: 'Classical versus deep pipelines.'
+---
+
+import Todo from '../../components/Todo.astro';
+
+## What it does
+
+- A 12-week curriculum and codebase covering EEG simulation, filtering, and decoding with band-power features, common spatial patterns, and Riemannian classifiers.
+- A reproducible pipeline on the MOABB framework that decodes motor-imagery EEG from public datasets and measures the accuracy drop from within-session to leave-one-subject-out evaluation, quantifying cross-subject domain shift.
+- Compares classical pipelines (CSP + LDA; Riemannian covariance on the SPD manifold) with a deep model (EEGNet) using Euclidean Alignment, reproducing Eder et al. (2024): the deep nets showed no significant cross-subject advantage over Riemannian methods.
+- An automated test suite and continuous integration keep development reproducible.
+
+<Todo>Is this the private `eeg-cross-subject` repository? If it can be made public, add `links.code`. A figure of the within-session versus leave-one-subject-out accuracy would make this page much stronger.</Todo>

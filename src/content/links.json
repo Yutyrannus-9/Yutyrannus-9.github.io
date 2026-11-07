@@ -1,0 +1,6 @@
+[
+  { "id": "github", "label": "GitHub", "href": "https://github.com/Yutyrannus-9", "kind": "github", "source": "confirmed" },
+  { "id": "linkedin", "label": "LinkedIn", "href": "https://www.linkedin.com/in/joelj52/", "kind": "linkedin", "source": "resume" },
+  { "id": "email", "label": "Email", "href": "mailto:Jjarami001@citymail.cuny.edu", "kind": "email", "source": "resume" },
+  { "id": "resume", "label": "Résumé (PDF)", "href": "/resume.pdf", "kind": "resume", "source": "placeholder" }
+]

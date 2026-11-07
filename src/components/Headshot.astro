@@ -1,0 +1,28 @@
+---
+import { existsSync } from 'node:fs';
+import path from 'node:path';
+import Icon from './Icon.astro';
+import { profile, PUBLIC } from '../data/site';
+interface Props { size?: number }
+const { size = 96 } = Astro.props;
+const src = profile.headshot.value;
+const exists = !!src && existsSync(path.join(process.cwd(), 'public', src));
+---
+<div class="headshot" style={`--s:${size}px`}>
+  {exists ? (
+    <img src={src} alt={`Photo of ${profile.name.value}`} width={size} height={size} />
+  ) : PUBLIC ? (
+    <span class="headshot__initials" aria-hidden="true">{profile.name.value.split(' ').map((w) => w[0]).join('')}</span>
+  ) : (
+    <span class="headshot__icon" role="img" aria-label={`Headshot to add at public${src}`} title={`Add a square photo at public${src}`}>
+      <Icon name="user" />
+    </span>
+  )}
+</div>
+<style>
+  .headshot { width: var(--s); height: var(--s); border-radius: 50%; overflow: hidden; flex: none; border: 1px solid var(--hairline); background: var(--ground); }
+  .headshot img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .headshot__icon { display: grid; place-items: center; width: 100%; height: 100%; color: var(--muted); border: 1px dashed var(--ph); border-radius: 50%; }
+  .headshot__initials { display: grid; place-items: center; width: 100%; height: 100%; font: 500 calc(var(--s) * 0.36)/1 'IBM Plex Sans Condensed', sans-serif; color: var(--accent); }
+  .headshot__icon :global(svg) { width: 45%; height: 45%; }
+</style>

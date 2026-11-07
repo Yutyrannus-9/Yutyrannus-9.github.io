@@ -1,0 +1,30 @@
+---
+import Status from './Status.astro';
+import Tags from './Tags.astro';
+import ImageSlot from './ImageSlot.astro';
+interface Props {
+  href: string;
+  title: string;
+  summary: string;
+  status: string;
+  source: string;
+  tags: readonly string[];
+  meta?: string;
+  index?: number;
+  level?: 2 | 3;
+  cover?: { src: string; alt: string };
+}
+const { href, title, summary, status, source, tags, meta, index, level = 2, cover } = Astro.props;
+const H = `h${level}` as 'h2' | 'h3';
+---
+<a class:list={['card', { ph: source === 'placeholder' }]} href={href} data-slice-index={index}>
+  {cover && <ImageSlot src={cover.src} alt={cover.alt} class="card__cover" width={800} height={450} />}
+  <Status status={status} source={source} />
+  {meta && <span class="muted mono" style="font-size:12px;margin-left:8px">{meta}</span>}
+  <H class="card__title">{title}</H>
+  <p>{summary}</p>
+  <Tags tags={tags} />
+</a>
+<style>
+  :global(.card__cover) { aspect-ratio: 16 / 9; margin-bottom: 10px; }
+</style>

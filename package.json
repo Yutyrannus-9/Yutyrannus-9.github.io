@@ -1,0 +1,51 @@
+{
+  "name": "portfolio",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "brain": "node scripts/build-brain.mjs && node scripts/render-images.mjs",
+    "dev": "astro dev",
+    "check:content": "node scripts/check-placeholders.mjs",
+    "build": "node scripts/check-placeholders.mjs && node scripts/render-images.mjs && astro build",
+    "build:draft": "node scripts/render-images.mjs && astro build",
+    "preview": "astro preview",
+    "check": "tsc --noEmit -p .",
+    "check:links": "node scripts/check-links.mjs",
+    "fonts": "node scripts/copy-fonts.mjs",
+    "data:local": "node scripts/build-volume.mjs && node scripts/build-deep.mjs && node scripts/build-background.mjs"
+  },
+  "devDependencies": {
+    "@gltf-transform/core": "^4.5.1",
+    "@gltf-transform/extensions": "^4.5.1",
+    "@gltf-transform/functions": "^4.5.1",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@types/three": "^0.186.0",
+    "d3-contour": "^4.0.2",
+    "meshoptimizer": "^1.3.0",
+    "qrcode": "^1.5.4",
+    "sharp": "^0.35.5",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "@astrojs/mdx": "^4.3.14",
+    "@astrojs/react": "^4.4.2",
+    "@astrojs/sitemap": "^3.7.4",
+    "@fontsource/ibm-plex-mono": "^5.3.0",
+    "@fontsource/ibm-plex-sans": "^5.3.0",
+    "@fontsource/ibm-plex-sans-condensed": "^5.3.0",
+    "@react-three/fiber": "^9.8.1",
+    "@tailwindcss/vite": "^4.3.3",
+    "astro": "^5.18.2",
+    "lucide-static": "^1.49.0",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "tailwindcss": "^4.3.3",
+    "three": "^0.186.1",
+    "zustand": "^5.0.15"
+  },
+  "engines": {
+    "node": ">=20.3"
+  }
+}

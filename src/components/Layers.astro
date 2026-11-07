@@ -1,0 +1,44 @@
+---
+// Primary navigation, styled as a viewer's layer list (brief §4.4).
+import Icon from './Icon.astro';
+import type { IconName } from '../lib/icons';
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+const layers: { href: string; op: string; label: string; icon: IconName }[] = [
+  { href: '/', op: 'Surface', label: 'Home', icon: 'scan' },
+  { href: '/research', op: 'Deep', label: 'Research', icon: 'expand' },
+  { href: '/projects', op: 'Section', label: 'Projects', icon: 'slice' },
+  { href: '/about', op: 'Atlas', label: 'About', icon: 'map' },
+  { href: '/explore', op: 'Viewer', label: 'Explore', icon: 'scan' },
+];
+const pages: { href: string; label: string; icon: IconName }[] = [
+  { href: '/timeline', label: 'Timeline', icon: 'commit' },
+  { href: '/notes', label: 'Notes', icon: 'notebook' },
+  { href: '/methods', label: 'Methods', icon: 'flask' },
+  { href: '/contact', label: 'Contact', icon: 'mail' },
+];
+const current = (href: string) => (href === '/' ? path === '/' : path === href || path.startsWith(href + '/'));
+---
+<nav class="layers" aria-label="Primary">
+  <p class="layers__heading" id="layers-h">Layers</p>
+  <ul aria-labelledby="layers-h">
+    {layers.map((l) => (
+      <li>
+        <a href={l.href} aria-current={current(l.href) ? 'page' : undefined}>
+          <Icon name={l.icon} />
+          <span>{l.label}</span>
+          <span class="layers__op">{l.op}</span>
+        </a>
+      </li>
+    ))}
+    <li aria-hidden="true"><hr /></li>
+    {pages.map((p) => (
+      <li>
+        <a href={p.href} aria-current={current(p.href) ? 'page' : undefined}>
+          <Icon name={p.icon} />
+          <span>{p.label}</span>
+          <span />
+        </a>
+      </li>
+    ))}
+  </ul>
+</nav>

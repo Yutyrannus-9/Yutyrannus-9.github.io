@@ -1,0 +1,50 @@
+---
+# Copy this file to src/content/research/<your-slug>.mdx (no leading underscore)
+# and put its images in public/images/research/<your-slug>/.
+# Files starting with "_" are ignored by the site.
+title: 'Project title'
+summary: 'One or two sentences a non-specialist can follow.'
+status: ongoing # completed | ongoing | coursework | independent | conceptual | future
+source: placeholder # change to confirmed (or resume) once the facts are real
+order: 10
+period: 'Spring 2027'
+question: 'The research question, in one sentence.'
+role: 'Your role, lab, and supervisor.'
+dataType: 'What data, how much, and from where (only what you may share).'
+tools:
+  - 'Main software or methods'
+tags: [neuroimaging] # only tags from TAGS in src/data/site.ts
+cover:
+  src: '/images/research/your-slug/cover.png'
+  alt: 'Describe the image for someone who cannot see it'
+images:
+  - src: '/images/research/your-slug/figure-1.png'
+    alt: 'What the figure shows'
+    caption: 'One sentence on what to notice.'
+  - src: '/images/research/your-slug/figure-2.png'
+    alt: 'What the figure shows'
+    caption: 'One sentence on what to notice.'
+links:
+  poster: '/images/research/your-slug/poster.pdf'
+---
+
+import Todo from '../../components/Todo.astro';
+
+## In plain language
+
+<Todo>One paragraph for someone outside the field.</Todo>
+
+## What I did
+
+- Step one.
+- Step two.
+
+## Findings or status
+
+<Todo>Results you are allowed to share, or the current status.</Todo>
+
+## What I learned
+
+## Limitations
+
+## Next steps

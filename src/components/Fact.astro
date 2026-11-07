@@ -1,0 +1,9 @@
+---
+// Renders a profile fact. Placeholders get a dashed outline and a badge so
+// they can't slip into production unnoticed (the build also fails on them).
+import type { Fact } from '../data/site';
+interface Props { fact: Fact; as?: string; class?: string }
+const { fact, as: Tag = 'span', class: cls } = Astro.props;
+const ph = fact.source === 'placeholder';
+---
+<Tag class:list={[cls, { ph }]} data-source={fact.source}>{fact.value}</Tag>{ph && <span class="ph-badge">to confirm</span>}

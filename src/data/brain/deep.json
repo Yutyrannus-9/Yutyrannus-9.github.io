@@ -1,0 +1,302 @@
+{
+ "generatedBy": "scripts/build-deep.mjs",
+ "version": "04d5a854f7",
+ "bytes": 213964,
+ "source": "FreeSurfer 7.4.1 recon-all aseg labels, 1 mm; surface nets, Taubin smoothing, meshopt simplification",
+ "structures": [
+  {
+   "id": "lh-thalamus",
+   "key": "thalamus",
+   "hemi": "L",
+   "name": "Thalamus",
+   "fsLabel": "Left-Thalamus",
+   "color": [
+    0,
+    118,
+    14
+   ],
+   "note": "A relay hub between the cortex and the rest of the brain; involved in sensation, movement, and attention.",
+   "triangles": 2178
+  },
+  {
+   "id": "rh-thalamus",
+   "key": "thalamus",
+   "hemi": "R",
+   "name": "Thalamus",
+   "fsLabel": "Right-Thalamus",
+   "color": [
+    0,
+    118,
+    14
+   ],
+   "note": "A relay hub between the cortex and the rest of the brain; involved in sensation, movement, and attention.",
+   "triangles": 1928
+  },
+  {
+   "id": "lh-caudate",
+   "key": "caudate",
+   "hemi": "L",
+   "name": "Caudate nucleus",
+   "fsLabel": "Left-Caudate",
+   "color": [
+    122,
+    186,
+    220
+   ],
+   "note": "Part of the striatum; involved in learning, goal-directed behavior, and the control of movement.",
+   "triangles": 1690
+  },
+  {
+   "id": "rh-caudate",
+   "key": "caudate",
+   "hemi": "R",
+   "name": "Caudate nucleus",
+   "fsLabel": "Right-Caudate",
+   "color": [
+    122,
+    186,
+    220
+   ],
+   "note": "Part of the striatum; involved in learning, goal-directed behavior, and the control of movement.",
+   "triangles": 1742
+  },
+  {
+   "id": "lh-putamen",
+   "key": "putamen",
+   "hemi": "L",
+   "name": "Putamen",
+   "fsLabel": "Left-Putamen",
+   "color": [
+    236,
+    13,
+    176
+   ],
+   "note": "Part of the striatum; involved in movement and habit learning.",
+   "triangles": 1992
+  },
+  {
+   "id": "rh-putamen",
+   "key": "putamen",
+   "hemi": "R",
+   "name": "Putamen",
+   "fsLabel": "Right-Putamen",
+   "color": [
+    236,
+    13,
+    176
+   ],
+   "note": "Part of the striatum; involved in movement and habit learning.",
+   "triangles": 1914
+  },
+  {
+   "id": "lh-pallidum",
+   "key": "pallidum",
+   "hemi": "L",
+   "name": "Globus pallidus",
+   "fsLabel": "Left-Pallidum",
+   "color": [
+    12,
+    48,
+    255
+   ],
+   "note": "Part of the basal ganglia; involved in regulating movement.",
+   "triangles": 940
+  },
+  {
+   "id": "rh-pallidum",
+   "key": "pallidum",
+   "hemi": "R",
+   "name": "Globus pallidus",
+   "fsLabel": "Right-Pallidum",
+   "color": [
+    13,
+    48,
+    255
+   ],
+   "note": "Part of the basal ganglia; involved in regulating movement.",
+   "triangles": 902
+  },
+  {
+   "id": "lh-hippocampus",
+   "key": "hippocampus",
+   "hemi": "L",
+   "name": "Hippocampus",
+   "fsLabel": "Left-Hippocampus",
+   "color": [
+    220,
+    216,
+    20
+   ],
+   "note": "Involved in forming new memories and in spatial navigation.",
+   "triangles": 2060
+  },
+  {
+   "id": "rh-hippocampus",
+   "key": "hippocampus",
+   "hemi": "R",
+   "name": "Hippocampus",
+   "fsLabel": "Right-Hippocampus",
+   "color": [
+    220,
+    216,
+    20
+   ],
+   "note": "Involved in forming new memories and in spatial navigation.",
+   "triangles": 2158
+  },
+  {
+   "id": "lh-amygdala",
+   "key": "amygdala",
+   "hemi": "L",
+   "name": "Amygdala",
+   "fsLabel": "Left-Amygdala",
+   "color": [
+    103,
+    255,
+    255
+   ],
+   "note": "Involved in detecting salience and threat, and in emotional learning.",
+   "triangles": 782
+  },
+  {
+   "id": "rh-amygdala",
+   "key": "amygdala",
+   "hemi": "R",
+   "name": "Amygdala",
+   "fsLabel": "Right-Amygdala",
+   "color": [
+    103,
+    255,
+    255
+   ],
+   "note": "Involved in detecting salience and threat, and in emotional learning.",
+   "triangles": 778
+  },
+  {
+   "id": "lh-accumbens",
+   "key": "accumbens",
+   "hemi": "L",
+   "name": "Nucleus accumbens",
+   "fsLabel": "Left-Nucleus-Accumbens",
+   "color": [
+    234,
+    197,
+    102
+   ],
+   "note": "Part of the ventral striatum; involved in reward and motivation.",
+   "triangles": 500
+  },
+  {
+   "id": "rh-accumbens",
+   "key": "accumbens",
+   "hemi": "R",
+   "name": "Nucleus accumbens",
+   "fsLabel": "Right-Nucleus-Accumbens",
+   "color": [
+    245,
+    155,
+    0
+   ],
+   "note": "Part of the ventral striatum; involved in reward and motivation.",
+   "triangles": 500
+  },
+  {
+   "id": "lh-ventraldc",
+   "key": "ventraldc",
+   "hemi": "L",
+   "name": "Ventral diencephalon",
+   "fsLabel": "Left-VentralDC",
+   "color": [
+    165,
+    42,
+    42
+   ],
+   "note": "A FreeSurfer label that groups several small structures below the thalamus, including the hypothalamus.",
+   "triangles": 1864
+  },
+  {
+   "id": "rh-ventraldc",
+   "key": "ventraldc",
+   "hemi": "R",
+   "name": "Ventral diencephalon",
+   "fsLabel": "Right-VentralDC",
+   "color": [
+    165,
+    42,
+    42
+   ],
+   "note": "A FreeSurfer label that groups several small structures below the thalamus, including the hypothalamus.",
+   "triangles": 1774
+  },
+  {
+   "id": "lh-ventricle",
+   "key": "ventricle",
+   "hemi": "L",
+   "name": "Lateral ventricle",
+   "fsLabel": "Left-Lateral-Ventricle",
+   "color": [
+    120,
+    18,
+    134
+   ],
+   "note": "A space filled with cerebrospinal fluid, not neural tissue. Shown as a landmark.",
+   "triangles": 3526
+  },
+  {
+   "id": "rh-ventricle",
+   "key": "ventricle",
+   "hemi": "R",
+   "name": "Lateral ventricle",
+   "fsLabel": "Right-Lateral-Ventricle",
+   "color": [
+    120,
+    18,
+    134
+   ],
+   "note": "A space filled with cerebrospinal fluid, not neural tissue. Shown as a landmark.",
+   "triangles": 3574
+  },
+  {
+   "id": "lh-cerebellum",
+   "key": "cerebellum",
+   "hemi": "L",
+   "name": "Cerebellum",
+   "fsLabel": "Left-Cerebellum-Cortex",
+   "color": [
+    230,
+    148,
+    34
+   ],
+   "note": "Involved in coordinating movement, balance, and motor learning.",
+   "triangles": 8766
+  },
+  {
+   "id": "rh-cerebellum",
+   "key": "cerebellum",
+   "hemi": "R",
+   "name": "Cerebellum",
+   "fsLabel": "Right-Cerebellum-Cortex",
+   "color": [
+    230,
+    148,
+    34
+   ],
+   "note": "Involved in coordinating movement, balance, and motor learning.",
+   "triangles": 8730
+  },
+  {
+   "id": "brainstem",
+   "key": "brainstem",
+   "hemi": "M",
+   "name": "Brainstem",
+   "fsLabel": "Brain-Stem",
+   "color": [
+    119,
+    159,
+    176
+   ],
+   "note": "Connects the brain and spinal cord; involved in breathing, heart rate, and arousal.",
+   "triangles": 4410
+  }
+ ]
+}

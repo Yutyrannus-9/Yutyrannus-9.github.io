@@ -1,0 +1,71 @@
+---
+title: 'One brain, twenty pipelines: how much do open-source neuroimaging tools agree?'
+summary: 'I ran one T1-weighted MRI of my own brain through about 20 open-source segmentation tools and models, then compared what they report.'
+status: independent
+source: confirmed
+order: 1
+period: '2026'
+question: 'How consistent are widely used open-source segmentation tools on a single T1 scan, and can a general-purpose medical foundation model (SAM-Med3D) replace brain-specific tools?'
+role: 'Independent project. I ran every pipeline and analysis on my own scan.'
+dataType: 'One 1 mm isotropic 3D T1-weighted MRI (Siemens) from a 2026 research acquisition. n = 1.'
+tools:
+  - 'FreeSurfer 7.4.1: recon-all, SynthSeg 2.0, SynthStrip, SAMSEG, ScLimbic, hypothalamic subunits, segment_subregions (hippocampus/amygdala, thalamus, brainstem)'
+  - 'ANTsPyNet: brain extraction, DeepAtropos, DKT, HippMapp3r, DeepFlash, cerebellum, claustrum, SHIVA PVS, lesion, DeepBrainNet'
+  - 'SynthBA'
+  - 'PCNtoolkit normative models (Rutherford et al., eLife 2022)'
+  - 'SAM-Med3D-turbo'
+tags: [neuroimaging, structural-mri, freesurfer, segmentation, reproducibility, foundation-models]
+cover:
+  src: '/images/research/one-brain-twenty-pipelines/method-agreement.png'
+  alt: 'Chart of percent difference between tools for each brain structure'
+images:
+  - src: '/images/research/one-brain-twenty-pipelines/method-agreement.png'
+    alt: 'Percent difference between tools, by structure'
+    caption: 'How much the tools disagree, structure by structure.'
+  - src: '/images/research/one-brain-twenty-pipelines/sam-med3d-dice.png'
+    alt: 'Bar chart of SAM-Med3D Dice scores by structure'
+    caption: 'SAM-Med3D accuracy against atlas labels after 5 prompts.'
+  - src: '/images/research/one-brain-twenty-pipelines/sam-med3d-overlay.png'
+    alt: 'SAM-Med3D segmentation overlaid on an MRI slice'
+    caption: 'Where SAM-Med3D segmented the surrounding tissue.'
+---
+
+import PipelineDiagram from '../../components/PipelineDiagram.astro';
+import Todo from '../../components/Todo.astro';
+
+## In plain language
+
+Brain-imaging software turns an MRI scan into measurements, such as how large the hippocampus is or how thick the cortex is. Many free tools do this, and research papers often report numbers from just one of them. I wanted to see how much those numbers depend on which tool you pick. So I took one scan of my own brain, ran it through about twenty tools, and compared what they said. The short answer: for small structures, the choice of tool matters a lot, and a general-purpose AI model for medical images was not a substitute for brain-specific tools.
+
+## Pipeline
+
+<PipelineDiagram />
+
+## Findings
+
+These are method-level results. The site shows no health information about my brain (see [methods](/methods)).
+
+1. **Tools disagree most on small structures.** The largest and smallest amygdala estimates differed by about 2.7×. For most structures, the direction of left–right asymmetry flipped between tools, so a number from a single tool needs uncertainty attached.
+2. **SAM-Med3D wasn't a substitute here.** Against atlas labels after 5 prompts, it reached a Dice score of 0.82 on the brainstem but under 0.06 on the lateral ventricle, third ventricle, and caudate, where it segmented the surrounding tissue instead. On its own CT sample it reached a mean Dice of 0.68 from one prompt, which suggests the setup itself was working.
+3. **A possible software issue.** In FreeSurfer 7.4.1, SynthSeg's `--parc --vol` output wrote cortical parcel volumes that sum exactly to total cerebral white matter instead of cortex. I used label-map voxel counts instead, which sum to within 1.3% of its cortex estimate. *Status: observed on one scan. I haven't called it a bug; the next step is to reproduce it on FreeSurfer's sample subject `bert`.*
+4. **Normative scores depend on calibration.** With no reference data from the same scanner, the choice of proxy site shifted z-scores by a median of 0.44 SD, and by up to about 2 SD for mean cortical thickness. Single-subject normative claims need same-scanner calibration.
+5. **Quality control passed.** Automated QC was clean, and the surface topology was clean (Euler number −32; the usual problem threshold is about −217).
+
+## Engineering notes
+
+- FreeSurfer's x86 build ran under Rosetta on an Apple-silicon laptop. Its TensorFlow-based tools only ran after exposing AVX to Rosetta (`ROSETTA_ADVERTISE_AVX=1`).
+
+<Todo>(Section: What I learned) In your own words: two or three things this project taught you. Keep them specific to what happened, for example what the asymmetry flips changed about how you read single-tool results.</Todo>
+
+## Limitations
+
+- n = 1: one scan of one person.
+- No manual ground truth. Dice scores are measured against atlas labels, not expert tracing.
+- Normative comparisons used a proxy calibration site.
+- Not clinical, and not a diagnosis of anything.
+
+## Next steps
+
+- Reproduce the SynthSeg parcel-volume result on FreeSurfer's sample subject `bert` before reporting it upstream.
+
+<Todo>Code: decide which of scripts 01–18 to open-source (after removing personal paths), then add the repository link to this page's `links.code`. Figures: drop the approved charts into public/images/research/one-brain-twenty-pipelines/ (file names are in this page's frontmatter).</Todo>

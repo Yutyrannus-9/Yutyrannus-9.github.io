@@ -1,0 +1,29 @@
+---
+title: 'Personal Brain Atlas (this site)'
+summary: 'A portfolio you navigate like a neuroimaging viewer. The brain is my own cortex, reconstructed with FreeSurfer and rendered live in the browser.'
+why: 'It turns one real reconstruction into something anyone can explore, and every visual on it is a real transformation of real data.'
+status: ongoing
+source: confirmed
+order: 1
+period: '2026'
+stack: ['Astro', 'React Three Fiber', 'three.js', 'glTF-Transform', 'meshoptimizer', 'TypeScript']
+tags: [visualization, webgl, freesurfer, neuroimaging, tooling]
+visibility: public
+cover:
+  src: '/images/projects/personal-brain-atlas/home.png'
+  alt: 'The home page of this site with the 3D cortex'
+images:
+  - src: '/images/projects/personal-brain-atlas/home.png'
+    alt: 'Home page with the 3D cortex'
+    caption: 'The surface view on the home page.'
+---
+
+## What it does
+
+- **Surface, Inflate, Section, Atlas.** Each page puts the brain in a different state, using the operations neuroimagers use: the folded pial surface, the inflated surface, an axial cut, and the Desikan–Killiany atlas.
+- **Section mode** cuts the surface with a moving plane. The cut face shows the cortical ribbon (between the pial and white surfaces) and the white matter inside, both taken from the reconstruction. No MRI slices are shown.
+- **The HUD** is ordinary HTML: layer list, a live RAS coordinate readout, orientation letters, a 10 mm scale bar, and a methods tag.
+
+## How it's built
+
+A build script converts the FreeSurfer surfaces, resampled to a 40,962-vertex icosahedral mesh per hemisphere, into one glTF file per hemisphere. The pial surface is the base mesh; the inflated and white surfaces are morph targets that share its vertex order. Positions are quantized to 14 bits and compressed with meshopt, which brings both hemispheres to about 1.4 MB. See [methods](/methods) for the full pipeline and privacy choices.

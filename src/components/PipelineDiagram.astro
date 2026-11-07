@@ -1,0 +1,51 @@
+---
+// Pipeline for the MRI case study. Facts from brief §7 only.
+const stages = [
+  { label: 'Input', items: ['One T1-weighted MRI', '1 mm isotropic, Siemens', 'n = 1'] },
+  {
+    label: 'Tools',
+    items: [
+      'FreeSurfer 7.4.1 (recon-all, SynthSeg 2.0, SynthStrip, SAMSEG, ScLimbic, subregions)',
+      'ANTsPyNet (10 models)',
+      'SynthBA',
+      'SAM-Med3D-turbo',
+      'PCNtoolkit normative models',
+    ],
+  },
+  {
+    label: 'Comparisons',
+    items: [
+      'Structure volumes across tools',
+      'Dice against atlas labels',
+      'Sensitivity to calibration site',
+      'Quality control',
+    ],
+  },
+];
+---
+<figure class="pipeline" aria-labelledby="pipeline-cap">
+  <ol>
+    {stages.map((s, i) => (
+      <li>
+        <p class="eyebrow">{String(i + 1).padStart(2, '0')} · {s.label}</p>
+        <ul>{s.items.map((it) => <li>{it}</li>)}</ul>
+      </li>
+    ))}
+  </ol>
+  <figcaption id="pipeline-cap" class="muted">Analysis pipeline: one scan in, about twenty tools, four kinds of comparison.</figcaption>
+</figure>
+<style>
+  .pipeline { margin: 1.4em 0; }
+  .pipeline ol { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; counter-reset: none; }
+  .pipeline > ol > li { border: 1px solid var(--hairline); border-radius: 6px; padding: 12px 14px; position: relative; background: var(--panel-a); }
+  .pipeline > ol > li + li::before {
+    content: ''; position: absolute; left: -12px; top: 50%; width: 12px; border-top: 1px solid var(--accent);
+  }
+  .pipeline ul { margin: 0; padding-left: 1.1em; font-size: 14px; line-height: 1.5; }
+  .pipeline ul li + li { margin-top: 4px; }
+  .pipeline figcaption { font-size: 14px; margin-top: 8px; }
+  @media (max-width: 700px) {
+    .pipeline ol { grid-template-columns: 1fr; }
+    .pipeline > ol > li + li::before { left: 50%; top: -12px; width: 0; height: 12px; border-top: 0; border-left: 1px solid var(--accent); }
+  }
+</style>

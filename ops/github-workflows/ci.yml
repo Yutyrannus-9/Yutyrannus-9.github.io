@@ -1,0 +1,32 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Type check
+        run: npx tsc --noEmit -p .
+      - name: Public build (placeholders hidden)
+        run: npm run build:draft
+        env:
+          PUBLIC_SITE: '1'
+          SITE_URL: https://yutyrannus-9.github.io
+      - name: Link check
+        run: node scripts/check-links.mjs
+      - name: Placeholder report
+        # Informational here; the production build on Vercel runs the same
+        # check and fails while placeholders remain.
+        run: node scripts/check-placeholders.mjs || true
+        env:
+          SITE_URL: ${{ vars.SITE_URL }}

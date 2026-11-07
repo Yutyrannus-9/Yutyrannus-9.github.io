@@ -1,0 +1,49 @@
+---
+import { shown } from '../../data/site';
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Status from '../../components/Status.astro';
+import Tags from '../../components/Tags.astro';
+import ImageSlot from '../../components/ImageSlot.astro';
+import Gallery from '../../components/Gallery.astro';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('research', (e) => shown(e.data));
+  return entries.map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+}
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const d = entry.data;
+const linkLabels = { code: 'Code', poster: 'Poster', paper: 'Paper', slides: 'Slides', documentation: 'Documentation' } as const;
+---
+<Base title={d.title} description={d.summary} mode="docked" backdrop="mri" ogType="article">
+  <article class="prose">
+    <p class="eyebrow"><a href="/research">Research</a> / case study</p>
+    <h1 style="font-size:38px;margin:0 0 12px">{d.title}</h1>
+    <p><Status status={d.status} source={d.source} />{d.period && <span class="muted mono" style="font-size:13px;margin-left:10px">{d.period}</span>}</p>
+    <p class="lede">{d.summary}</p>
+    {d.cover && <ImageSlot src={d.cover.src} alt={d.cover.alt} loading="eager" />}
+    <dl class="facts">
+      <dt>Question</dt><dd>{d.question}</dd>
+      <dt>My role</dt><dd>{d.role}</dd>
+      <dt>Data</dt><dd>{d.dataType}</dd>
+      {d.tools.length > 0 && (<><dt>Tools</dt><dd><ul>{d.tools.map((t) => <li>{t}</li>)}</ul></dd></>)}
+      {d.links && Object.keys(d.links).length > 0 && (
+        <>
+          <dt>Links</dt>
+          <dd>{Object.entries(d.links).map(([k, v]) => <a href={v} style="margin-right:14px">{linkLabels[k as keyof typeof linkLabels]}</a>)}</dd>
+        </>
+      )}
+    </dl>
+    <Tags tags={d.tags} />
+    <Gallery images={d.images} />
+    <Content />
+  </article>
+</Base>
+<style>
+  .facts { display: grid; grid-template-columns: 120px 1fr; gap: 8px 16px; margin: 24px 0; padding: 16px 0; border-top: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline); font-size: 16px; }
+  .facts dt { font: 500 12px/1.9 var(--font-mono); text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); }
+  .facts dd { margin: 0; }
+  .facts ul { margin: 0; padding-left: 1.1em; }
+  @media (max-width: 600px) { .facts { grid-template-columns: 1fr; } .facts dd { margin-bottom: 8px; } }
+</style>

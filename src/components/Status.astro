@@ -1,0 +1,5 @@
+---
+interface Props { status: string; source?: string }
+const { status, source } = Astro.props;
+---
+<span class="status" data-status={status}>{status}</span>{source === 'placeholder' && <span class="ph-badge">placeholder</span>}

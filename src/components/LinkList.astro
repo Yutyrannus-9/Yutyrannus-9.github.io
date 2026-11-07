@@ -1,0 +1,18 @@
+---
+import { getCollection } from 'astro:content';
+import { shown } from '../data/site';
+const links = (await getCollection('links')).filter((l) => shown(l.data));
+---
+<ul class="linklist">
+  {links.map(({ data }) => (
+    <li>
+      <a href={data.href} class:list={{ ph: data.source === 'placeholder' }} rel={data.href.startsWith('http') ? 'me noopener' : undefined}>
+        {data.label}
+      </a>
+      {data.source === 'placeholder' && <span class="ph-badge">to confirm</span>}
+    </li>
+  ))}
+</ul>
+<style>
+  .linklist { list-style: none; margin: 16px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: 15px; }
+</style>

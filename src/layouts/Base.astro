@@ -1,0 +1,237 @@
+---
+import '../styles/global.css';
+import { ClientRouter } from 'astro:transitions';
+import Layers from '../components/Layers.astro';
+import Icon from '../components/Icon.astro';
+import Fact from '../components/Fact.astro';
+import Viewer from '../components/viewer/Viewer';
+import { profile, site, background, mriOn } from '../data/site';
+
+export type BrainMode = 'surface' | 'inflated' | 'section' | 'atlas' | 'docked' | 'explore' | 'deep';
+interface Props {
+  title: string;
+  description: string;
+  mode: BrainMode;
+  /** What this page shows behind the content until the visitor picks something else. */
+  backdrop?: '3d' | 'mri';
+  /** Reading pages offer the light reading mode. */
+  reading?: boolean;
+  ogType?: 'website' | 'article';
+}
+const { title, description, mode, reading = mode === 'docked', ogType = 'website' } = Astro.props;
+const pageBackdrop = mriOn ? (Astro.props.backdrop ?? '3d') : '3d';
+const fullTitle = title === site.title ? `${profile.name.value} · ${site.title}` : `${title} · ${profile.name.value}`;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const ogImage = new URL('/og.png', Astro.site);
+
+const person = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: profile.name.value,
+  jobTitle: profile.role.value,
+  url: Astro.site?.toString(),
+  sameAs: ['https://github.com/Yutyrannus-9', 'https://www.linkedin.com/in/joelj52/'],
+};
+const backdrops = [
+  { id: '3d', label: '3D', title: 'Live 3D model of my cortex' },
+  ...(mriOn ? [{ id: 'mri', label: 'MRI', title: 'Slices of my T1 MRI (brain only, 1.5 mm)' }] : []),
+  { id: 'still', label: 'Still', title: 'A still image; nothing heavy loads' },
+];
+---
+<!doctype html>
+<html
+  lang="en"
+  data-brain={mode}
+  data-backdrop-default={pageBackdrop}
+  data-backdrop={pageBackdrop}
+  data-mri={mriOn ? 'on' : 'off'}
+  data-reading={reading ? 'true' : 'false'}
+  transition:animate="none"
+>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta name="theme-color" content="#070D1F" />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={`Cortical surface of ${profile.name.value}'s brain, reconstructed with FreeSurfer, on a dark navy background.`} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <!-- Fonts load without blocking first paint; text shows in the system font until IBM Plex arrives. -->
+    <link rel="stylesheet" href="/fonts/fonts.css" media="print" onload="this.media='all'" />
+    <noscript><link rel="stylesheet" href="/fonts/fonts.css" /></noscript>
+    <script type="application/ld+json" set:html={JSON.stringify(person)} />
+    {mode !== 'docked' && pageBackdrop === '3d' && (
+      <link rel="preload" as="image" href="/brain/poster-surface.avif" type="image/avif" fetchpriority="high" />
+    )}
+    {background && (
+      <style set:html={`
+        html[data-sky='on'] .sky{background-image:image-set(url(${background.src}.avif) type("image/avif"),url(${background.src}.webp) type("image/webp"))}
+        @media (max-width:899px){html[data-sky='on'] .sky{background-image:image-set(url(${background.src}-sm.avif) type("image/avif"),url(${background.src}-sm.webp) type("image/webp"))}}
+      `} />
+    )}
+    <script is:inline>
+      // Theme and backdrop live on <html>. The router swaps <html> attributes on
+      // every navigation, so they are re-applied after each swap.
+      (function () {
+        function read(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+        function apply(doc) {
+          var root = (doc || document).documentElement;
+          root.dataset.theme = read('pba:theme') === 'light' ? 'light' : 'dark';
+          var pref = read('pba:backdrop');
+          if (!pref && read('pba:skip3d') === 'true') pref = 'still';
+          var ok = pref === '3d' || pref === 'still' || (pref === 'mri' && root.dataset.mri === 'on');
+          var eff = ok ? pref : root.dataset.backdropDefault || '3d';
+          if (root.dataset.brain === 'explore') eff = '3d';
+          root.dataset.backdrop = eff;
+          // The background photo is decorative: fetch it only after the page has loaded.
+          if (window.__pbaSky) root.dataset.sky = 'on';
+        }
+        apply();
+        if (!window.__pbaInit) {
+          window.__pbaInit = true;
+          document.addEventListener('astro:before-swap', function (e) { apply(e.newDocument); });
+          window.addEventListener('load', function () {
+            setTimeout(function () { window.__pbaSky = true; document.documentElement.dataset.sky = 'on'; }, 200);
+          });
+        }
+      })();
+    </script>
+    <ClientRouter />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    {background && <div class="sky" aria-hidden="true" transition:persist="sky" style={`--sky-opacity:${background.opacity}`} />}
+
+    <header class="topbar">
+      <a class="topbar__id" href="/">
+        <Fact fact={profile.name} class="topbar__name" />
+        <span class="topbar__role">{profile.role.value}</span>
+      </a>
+      <div class="topbar__tools">
+        {reading && (
+          <button class="btn" type="button" data-theme-toggle aria-pressed="false" title="Light reading mode">
+            <Icon name="sun" /><span>Light</span>
+          </button>
+        )}
+        {mode !== 'explore' && (
+          <div class="seg" role="radiogroup" aria-label="Backdrop" data-backdrop-switch>
+            <span class="seg__label mono" aria-hidden="true">Backdrop</span>
+            {backdrops.map((b) => (
+              <button type="button" role="radio" class="seg__btn" data-choice={b.id} aria-checked="false" title={b.title}>
+                {b.label}
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
+    </header>
+
+    <Layers />
+
+    <div class="stage" id="stage" transition:persist="stage" data-ready="false">
+      <div class="stage__vignette" aria-hidden="true"></div>
+      <picture>
+        <source srcset="/brain/poster-surface.avif" type="image/avif" />
+        <img
+          class="stage__poster"
+          src="/brain/poster-surface.webp"
+          alt=""
+          width="1200"
+          height="1200"
+          decoding="async"
+          loading={mode === 'docked' || pageBackdrop === 'mri' ? 'lazy' : 'eager'}
+          fetchpriority={mode === 'docked' || pageBackdrop === 'mri' ? 'low' : 'high'}
+        />
+      </picture>
+      <Viewer client:idle />
+      <p class="sr-only" id="brain-alt">
+        {site.brainLabel} The backdrop can show a live 3D model of the cortex, slices of the T1 MRI (brain only, resampled to 1.5 mm), or a still image. The Explore page adds deep structures and a movable MRI slice plane. Every cortical region is also listed as text on the About page.
+      </p>
+    </div>
+
+    <main id="main" class="content" tabindex="-1">
+      <slot />
+      <footer class="footer">
+        <p>{site.brainLabel} <a href="/methods">How it was made</a>.</p>
+        {background && (
+          <p>
+            Background: {background.subject}, by <a href={background.creatorUrl}>{background.creator}</a>,{' '}
+            <a href={background.licenseUrl}>{background.license}</a>{background.changes && <>; {background.changes}</>}.{' '}
+            <a href={background.sourceUrl}>Source</a>. Not my data.
+          </p>
+        )}
+      </footer>
+    </main>
+
+    <footer class="statusbar" transition:persist="statusbar">
+      <span id="hud-readout" class="mono" aria-live="off"></span>
+      <a class="statusbar__methods" href="/methods">{site.methodsTag}</a>
+    </footer>
+
+    <script>
+      function bind() {
+        const root = document.documentElement;
+        const store = (k: string, v: string) => {
+          try {
+            localStorage.setItem(k, v);
+          } catch {}
+        };
+
+        const sw = document.querySelector<HTMLElement>('[data-backdrop-switch]');
+        if (sw) {
+          const buttons = [...sw.querySelectorAll<HTMLButtonElement>('[data-choice]')];
+          const sync = () =>
+            buttons.forEach((b) => {
+              const on = b.dataset.choice === root.dataset.backdrop;
+              b.setAttribute('aria-checked', String(on));
+              b.tabIndex = on ? 0 : -1;
+            });
+          const choose = (b: HTMLButtonElement) => {
+            const next = b.dataset.choice!;
+            root.dataset.backdrop = next;
+            store('pba:backdrop', next);
+            sync();
+            document.dispatchEvent(new CustomEvent('pba:backdrop', { detail: next }));
+          };
+          buttons.forEach((b, i) => {
+            b.onclick = () => choose(b);
+            b.onkeydown = (e) => {
+              const d = e.key === 'ArrowRight' || e.key === 'ArrowDown' ? 1 : e.key === 'ArrowLeft' || e.key === 'ArrowUp' ? -1 : 0;
+              if (!d) return;
+              e.preventDefault();
+              const n = buttons[(i + d + buttons.length) % buttons.length];
+              n.focus();
+              choose(n);
+            };
+          });
+          sync();
+        }
+
+        const theme = document.querySelector<HTMLButtonElement>('[data-theme-toggle]');
+        if (theme) {
+          theme.setAttribute('aria-pressed', String(root.dataset.theme === 'light'));
+          theme.onclick = () => {
+            const next = root.dataset.theme === 'light' ? 'dark' : 'light';
+            root.dataset.theme = next;
+            store('pba:theme', next);
+            theme.setAttribute('aria-pressed', String(next === 'light'));
+          };
+        }
+      }
+      document.addEventListener('astro:page-load', bind);
+    </script>
+  </body>
+</html>

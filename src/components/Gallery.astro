@@ -1,0 +1,25 @@
+---
+import { existsSync } from 'node:fs';
+import path from 'node:path';
+import ImageSlot from './ImageSlot.astro';
+import { PUBLIC } from '../data/site';
+interface Props { images: { src: string; alt: string; caption?: string }[] }
+// Public builds show only figures whose files exist.
+const images = Astro.props.images.filter((im) => !PUBLIC || existsSync(path.join(process.cwd(), 'public', im.src)));
+---
+{images.length > 0 && (
+  <section class="gallery" aria-label="Figures">
+    {images.map((im, i) => (
+      <figure>
+        <a href={im.src} aria-label={`Open figure ${i + 1} full size`}><ImageSlot src={im.src} alt={im.alt} /></a>
+        {im.caption && <figcaption><span class="mono">Fig. {i + 1}</span> {im.caption}</figcaption>}
+      </figure>
+    ))}
+  </section>
+)}
+<style>
+  .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: 16px; margin: 1.6em 0; }
+  .gallery figure { margin: 0; }
+  .gallery figcaption { font-size: 14px; color: var(--muted); margin-top: 6px; line-height: 1.5; }
+  .gallery .mono { color: var(--text); font-size: 12px; margin-right: 6px; }
+</style>

@@ -1,0 +1,14 @@
+---
+title: "Running FreeSurfer's TensorFlow tools on Apple silicon"
+summary: 'The x86 build of FreeSurfer 7.4.1 runs under Rosetta, but its TensorFlow-based tools needed AVX exposed first.'
+date: 2026-09-30
+source: confirmed
+kind: how-to
+tags: [freesurfer, neuroimaging, tooling]
+---
+
+FreeSurfer 7.4.1 ships an x86 build, which runs on an Apple-silicon Mac under Rosetta. Most of `recon-all` worked as is. The TensorFlow-based tools, such as SynthSeg and SynthStrip, did not run until I exposed AVX to Rosetta:
+
+```bash
+export ROSETTA_ADVERTISE_AVX=1
+```

@@ -1,0 +1,138 @@
+{
+ "source": "FreeSurfer 7.4.1 recon-all of a research T1 scan, resampled to icosahedron order 6 with mri_surf2surf",
+ "coordinates": "FreeSurfer tkr-RAS millimeters (x = left->right, y = posterior->anterior, z = inferior->superior). Three.js is y-up: map (x, y, z) -> (x, z, -y).",
+ "topology": "Within a hemisphere, pial/white/inflated/sphere share vertex order and faces, so they can be used directly as morph targets.",
+ "display_offsets_mm": {
+  "pial": 0,
+  "white": 0,
+  "inflated": {
+   "lh": -45,
+   "rh": 45
+  },
+  "sphere": {
+   "lh": -110,
+   "rh": 110
+  }
+ },
+ "surfaces": {
+  "lh.pial": {
+   "file": "lh.pial.ico6.obj",
+   "n_vertices": 40962,
+   "bbox_min": [
+    -77.9,
+    -107.5,
+    -15.1
+   ],
+   "bbox_max": [
+    2.6,
+    57.5,
+    98.9
+   ]
+  },
+  "lh.white": {
+   "file": "lh.white.ico6.obj",
+   "n_vertices": 40962,
+   "bbox_min": [
+    -75.0,
+    -105.0,
+    -11.7
+   ],
+   "bbox_max": [
+    0.4,
+    54.3,
+    96.3
+   ]
+  },
+  "lh.inflated": {
+   "file": "lh.inflated.ico6.obj",
+   "n_vertices": 40962,
+   "bbox_min": [
+    -59.6,
+    -134.1,
+    -85.1
+   ],
+   "bbox_max": [
+    59.6,
+    134.1,
+    85.1
+   ]
+  },
+  "lh.sphere": {
+   "file": "lh.sphere.ico6.obj",
+   "n_vertices": 40962,
+   "bbox_min": [
+    -100.0,
+    -100.0,
+    -100.0
+   ],
+   "bbox_max": [
+    100.0,
+    100.0,
+    100.0
+   ]
+  },
+  "rh.pial": {
+   "file": "rh.pial.ico6.obj",
+   "n_vertices": 40962,
+   "bbox_min": [
+    -8.6,
+    -102.2,
+    -18.9
+   ],
+   "bbox_max": [
+    76.3,
+    61.0,
+    97.3
+   ]
+  },
+  "rh.white": {
+   "file": "rh.white.ico6.obj",
+   "n_vertices": 40962,
+   "bbox_min": [
+    -5.5,
+    -100.1,
+    -16.1
+   ],
+   "bbox_max": [
+    72.9,
+    58.1,
+    94.5
+   ]
+  },
+  "rh.inflated": {
+   "file": "rh.inflated.ico6.obj",
+   "n_vertices": 40962,
+   "bbox_min": [
+    -59.3,
+    -131.0,
+    -86.3
+   ],
+   "bbox_max": [
+    59.3,
+    131.0,
+    86.3
+   ]
+  },
+  "rh.sphere": {
+   "file": "rh.sphere.ico6.obj",
+   "n_vertices": 40962,
+   "bbox_min": [
+    -100.0,
+    -100.0,
+    -100.0
+   ],
+   "bbox_max": [
+    100.0,
+    100.0,
+    100.0
+   ]
+  }
+ },
+ "vertex_data": [
+  "lh.vertex_data.json",
+  "rh.vertex_data.json"
+ ],
+ "regions": "regions.json",
+ "privacy": "Surfaces contain no face or identifying metadata.",
+ "volume_to_surface_transform": "see ../web_volumes/volumes_meta.json: voxel_to_surface_tkrRAS"
+}
