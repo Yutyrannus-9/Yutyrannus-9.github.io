@@ -13,7 +13,8 @@
     "check": "tsc --noEmit -p .",
     "check:links": "node scripts/check-links.mjs",
     "fonts": "node scripts/copy-fonts.mjs",
-    "data:local": "node scripts/build-volume.mjs && node scripts/build-deep.mjs && node scripts/build-background.mjs"
+    "data:local": "node scripts/build-volume.mjs && node scripts/build-deep.mjs && node scripts/build-background.mjs",
+    "deploy:pages": "sh scripts/deploy-pages.sh"
   },
   "devDependencies": {
     "@gltf-transform/core": "^4.5.1",
